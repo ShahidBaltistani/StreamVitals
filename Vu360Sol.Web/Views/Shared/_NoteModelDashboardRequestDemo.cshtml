@@ -1,0 +1,42 @@
+﻿<div id="notemodalDB" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#2f6295 !important">
+                    <h4 class="modal-title" id="myModalLabel" style="color: white !important;">Notes</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="formnote" style="margin-bottom:0px !important;">
+                        <input name="ReferenceId" id="ReferenceId" value="" hidden />
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <label>Notes:</label>
+                                <textarea name="Discription" id="Discription" class="form-control required" cols="30" rows="6" placeholder="Please write your notes......"></textarea>
+                                <span id="errmsg"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <a href="#" type="button" id="btnnote" style="float:right;padding:8px !important;" class="button button-border button-white button-light button-large button-rounded text-right "><span>Save</span></a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <table class="table">
+                        <thead style="background-color:#1abc9c !important; color:white !important;">
+                            <tr>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="NotesTableDB">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

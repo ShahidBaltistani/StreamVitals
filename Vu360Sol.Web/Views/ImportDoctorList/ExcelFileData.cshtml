@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "ExcelFileData";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+            <div class="">
+                <h1 class="text-center">Excel File Data</h1>
+            </div>
+            <div class="row gutter-40 col-mb-80">
+                <div class="postcontent col-lg-8 offset-2">
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-secondary" id="SubmittBtn">Save</button>
+                            <br />
+                        </div>
+                        @*<div class="col-lg-4 offset-2">
+                                <div class="input-group mx-auto" style="float:right;margin-top:11px;">
+                                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                                </div>
+                            </div>*@
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table" id="table-information">
+                            <thead>
+                                <tr>
+
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Type</th>
+                                    <th>Provider Type</th>
+                                    <th>Credentials</th>
+                                    <th>NPI</th>
+                                    <th>Networks</th>
+                                    <th>Practice Name</th>
+                                    <th>Location Name</th>
+                                    <th>Location Address</th>
+                                    <th>Location City</th>
+                                    <th>Location State</th>
+                                    <th>Location Zip</th>
+                                    <th>Location Code</th>
+                                    <th>Appointment Count</th>
+                                    <th>Doctor Status</th>
+                                    <th>Gender</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in ViewBag.ListDoctors)
+                                {
+                                <tr>
+                                    <td class="name"><input type="text" value="@p.User.FirstName" /></td>
+                                    <td><input type="text" value="@p.User.LastName" /></td>
+                                    <td><input type="text" value="@p.User.Email" /></td>
+                                    <td><input type="text" value="@p.User.PhoneNumber" /></td>
+                                    <td><input type="text" value="@p.Type" /></td>
+                                    <td><input type="text" value="@p.ProviderType" /></td>
+                                    <td><input type="text" value="@p.Credentials" /></td>
+                                    <td><input type="text" value="@p.NPI" /></td>
+                                    <td><input type="text" value="@p.Networks" /></td>
+                                    <td><input type="text" value="@p.PracticeName" /></td>
+                                    <td><input type="text" value="@p.LocationName" /></td>
+                                    <td><input type="text" value="@p.LocationAddress" /></td>
+                                    <td><input type="text" value="@p.LocationCity" /></td>
+                                    <td><input type="text" value="@p.LocationState" /></td>
+                                    <td><input type="text" value="@p.LocationZip" /></td>
+                                    <td><input type="text" value="@p.LocationCode" /></td>
+                                    <td><input type="text" value="@p.AppointmentCount" /></td>
+                                    <td><input type="text" value="@p.DoctorStatus" /></td>
+                                    <td>
+                                        <div class="form-group ">
+                                            <select id="Gender" name="User.GenderId" class="form-control" style="width: 105px !important;">
+                                                <option value="3" selected>None</option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div id="pagination" class="noprint" style="margin-top:40px;"></div>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+            //set onclick events for buttons
+            //debugger;
+            $('#SubmittBtn').click(function () { PostList(); });
+        });
+
+        //Send List of Movies to controller
+        function PostList() {
+            debugger
+
+            //Build List object that has to be sent to controller
+            var DoctorList = []; // list object
+            $('#table-information > tbody  > tr').each(function () { //loop in table list
+                //debugger;
+                var Doctor = {}; // create new Movie object and set its properties
+                Doctor.User = {};
+                Doctor.User.FirstName = $(this).find("td:eq(0) input[type='text']").val();
+                Doctor.User.LastName = $(this).find("td:eq(1) input[type='text']").val();
+                Doctor.User.Email = $(this).find("td:eq(2) input[type='text']").val();
+                Doctor.User.PhoneNumber = $(this).find("td:eq(3) input[type='text']").val();
+                Doctor.Type = $(this).find("td:eq(4) input[type='text']").val();
+                Doctor.ProviderType = $(this).find("td:eq(5) input[type='text']").val();
+                Doctor.Credentials = $(this).find("td:eq(6) input[type='text']").val();
+                Doctor.NPI = $(this).find("td:eq(7) input[type='text']").val();
+                Doctor.Networks = $(this).find("td:eq(8) input[type='text']").val();
+                Doctor.PracticeName = $(this).find("td:eq(9) input[type='text']").val();
+                Doctor.LocationName = $(this).find("td:eq(10) input[type='text']").val();
+                Doctor.LocationAddress = $(this).find("td:eq(11) input[type='text']").val();
+                Doctor.LocationCity = $(this).find("td:eq(12) input[type='text']").val();
+                Doctor.LocationState = $(this).find("td:eq(13) input[type='text']").val();
+                Doctor.LocationZip = $(this).find("td:eq(14) input[type='text']").val();
+                Doctor.LocationCode = $(this).find("td:eq(15) input[type='text']").val();
+                Doctor.AppointmentCount = $(this).find("td:eq(16) input[type='text']").val();
+                Doctor.DoctorStatus = $(this).find("td:eq(17) input[type='text']").val();
+                //Doctor.User.GenderId = $(this).find("td:eq(12) input[type='text']").val();
+                var tdObject  = $(this).find("td:eq(18)");
+                var selectObject = tdObject.find("select");
+                Doctor.User.GenderId = selectObject.val(); 
+                
+
+                DoctorList.push(Doctor); // add Movie object to list object
+            });
+
+            //debugger;
+
+            //Send list of movies to controller via ajax
+            $.ajax({
+                url: '/Doctor/DoctorsListSave',
+                type: "POST",
+                data: JSON.stringify(DoctorList),
+                //contentType: "application/json",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    debugger
+                    //alert("Products have been saved successfully."); // show success notification
+                    window.location.href=("/doctor/doctorlist")
+                }
+            });
+
+        }
+    </script>
+
+}

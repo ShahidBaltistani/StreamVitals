@@ -1,0 +1,195 @@
+﻿@model IEnumerable<Vu360Sol.ViewModel.RequestDemoes.RequestDemoViewModel>
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+<style>
+    .test:after {
+        content: '\2807';
+        font-size: 30px;
+    }
+
+    #errmsg {
+        color: red;
+    }
+</style>
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix" style="max-width: 1450px !important">
+            <div class="">
+                <h1 class="text-center">Requests For Demo</h1>
+            </div>
+            <div class="row gutter-40 col-mb-80">
+                <div class="postcontent col-lg-10 offset-1">
+
+                    <div id="partial" style="max-width:100% !important"></div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+    $(document).ready(function(){
+
+
+        $.ajax({
+            url: '@Url.Action("RequestsPage", "RequestDemo")',
+		})
+            .done(function (response) {
+                //debugger;
+            $("#partial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+    </script>
+    <script>
+        function NoteModal(Id) {
+            $("#ReferenceId").val(Id);
+            Notes(Id);
+            $("#notemodal").modal("show");
+        }
+        function Notes(Id) {
+            $.ajax({
+                type: "GET",
+                url: "/Note/List/" + Id,
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $('#NotesTable').html('');
+                    $.each(data, function (i, item) {
+                        rows = "<tr><td>" + item.Discription + "</td><td><a data-model-id='" + item.Id + "' onclick='Delete(this)' style='cursor:pointer;color:red'><i class='icon icon-trash'></i></a></td></tr>";
+                        $('#NotesTable').append(rows);
+                    });
+                },
+                error: function (result) {
+                    alert('Please Try Again...');
+                }
+            });
+        }
+        $(document).ready(function () {
+
+            // Button Working
+            $('#btnnote').prop('disabled', true);
+            $('#Discription').keyup(function () {
+                if ($(this).val() != '') {
+                    $('#btnnote').prop('disabled', false);
+                }
+            });
+
+            // Save Note
+
+            $("#btnnote").click(function (e) {
+
+                if ($("#Discription").val() == "") {
+                    $("#Discription").focus();
+                    $("#errmsg").html("Please Fill Notes Field").show().fadeOut(5000);
+                    return false;
+                }
+
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    //beforeSend: function () {
+                    //    $("#btnnote").html("Please Wait...");
+                    //},
+                    url: "/Note/Insert",
+                    data: $("#formnote").serialize(),
+                    success: function (result) {
+                        $('#Discription').val('');
+                        if (result) {
+                            var Id = $("#ReferenceId").val();
+                            Notes(Id)
+                        }
+                    },
+                    //complete: function () {
+                    //    $("#btnnote").html("Add Notes");
+                    //    },
+                    error: function (result) {
+                        alert('Please Try Again...');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function Delete(obj) {
+            debugger
+            var ele = $(obj);
+            var Id = ele.data("model-id");
+            var url = "/Note/Delete/" + Id;
+            //var ans = confirm("Are you sure you want to delete this Task ?");
+
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to delete this Note ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((ans) => {
+                    if (ans) {
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            success: function () {
+                                ele.closest("tr").remove();
+                            },
+                            error: function () {
+
+                                swal("Please Try Again...", {
+                                    icon: "error",
+                                });
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+}
+<div id="notemodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#2f6295 !important">
+                    <h4 class="modal-title" id="myModalLabel" style="color: white !important;">Notes</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="formnote" style="margin-bottom:0px !important;">
+                        <input name="ReferenceId" id="ReferenceId" value="" hidden />
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <label>Notes:</label>
+                                <textarea name="Discription" id="Discription" class="form-control required" cols="30" rows="6" placeholder="Please write your notes......"></textarea>
+                                <span id="errmsg"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <a href="#" type="button" id="btnnote" style="float:right;padding:8px !important;" class="button button-border button-white button-light button-large button-rounded text-right "><span>Save</span></a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <table class="table">
+                        <thead style="background-color:#1abc9c !important; color:white !important;">
+                            <tr>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="NotesTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

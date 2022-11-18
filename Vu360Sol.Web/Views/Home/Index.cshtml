@@ -1,0 +1,443 @@
+﻿@{
+    ViewBag.Title = "Remote Patient Monitoring";
+    Layout = "~/Views/Shared/_StaticPagesLayout.cshtml";
+}
+<head>
+    <title>Remote Patient Monitoring for doctors practices, doctors, hostpitals.</title>
+    <meta name="description" content="StreamVitals remote patient monitoring helps practices and doctors increase revenue and patient health for free">
+
+</head>
+<style>
+    .wrapper {
+        width: 400px;
+        height: 600px;
+        margin: 20px auto;
+        text-align: center;
+        border: 1px dashed grey;
+        overflow-y: scroll;
+    }
+
+    .vl {
+        border-left: 1px solid #1c79bd;
+        height: 169px;
+        position: relative;
+        /*top: 20%;*/
+        margin-top: 3%;
+        margin-left: -16px;
+    }
+
+    .btnoppoosit {
+        color: #1abc9c !important;
+        border: 2px solid #1abc9c !important;
+    }
+
+        .btnoppoosit:hover {
+            background-color: #1abc9c !important;
+            color: white !important;
+        }
+</style>
+
+<section id="slider" class="slider-element revslider-wrap include-header h-auto" style="margin-top:0px !important;">
+    <div class="slider-inner">
+
+       
+        <div id="rev_slider_679_1_wrapper" class="rev_slider_wrapper fullwidth-container" style="padding:0px;">
+            <!-- START REVOLUTION SLIDER 5.1.4 fullwidth mode -->
+            <div id="rev_slider_679_1" class="rev_slider fullwidthbanner" style="display:none;" data-version="5.1.4">
+                <ul>
+                    <!-- SLIDE 1 -->
+                    <li class="dark" data-transition="fade" data-slotamount="1" data-masterspeed="1500" data-thumb="/Content/canvas/WebSite Images/Sliders/Slider 1/Hero1.jpg" data-delay="10000" data-saveperformance="off" data-title="Responsive Design">
+                        <!-- MAIN IMAGE -->
+                        <img src="~/Content/canvas/WebSite Images/Sliders/Slider 1/Hero1.jpg"  alt="kenburns1" data-bgposition="center bottom" data-bgpositionend="center top" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                        <div class="layer">
+
+                            <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text p-0 border-0"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="230"
+                                 data-fontsize="['35','25','20','17']"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1200"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-textAlign="center"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3; white-space: nowrap;color:white !important;letter-spacing:1px !important; line-height:50px !important;">
+                                The Only Predictive Remote Patient Monitoring (RPM)<br /> Platform Connecting Patients With Practices.
+                            </div>
+
+                            <div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="340"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1400"
+                                 data-easing="easeOutQuad"
+                                 data-width="['650','650','480','360']"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-textAlign="center"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3; max-width: 650px; white-space: normal;color:white !important;">
+                                StreamVitals Will Drive Practice Revenue While Improving Patient Health.
+                            </div>
+
+                            <div class="tp-caption customin ltl tp-resizeme"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="450"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1550"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3;">
+                                <a href="/RequestDemo/Schedule" class="button button-border button-white button-light button-large button-rounded text-right m-0">
+                                    <span style="color:white !important;font-size:20px !important; line-height:30px !important;padding:15px !important;">Request Demo</span>
+                                    <i class="icon-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <!-- SLIDE 2 -->
+                    <li data-transition="slideup" data-slotamount="1" data-masterspeed="1500" data-thumb="/Content/canvas/WebSite Images/Sliders/Slider 2/Hero2.jpg" data-delay="10000" data-saveperformance="off" data-title="Unlimited Possibilities">
+                        <!-- MAIN IMAGE -->
+                        <img src="~/Content/canvas/WebSite Images/Sliders/Slider 2/Hero2.jpg" alt="kenburns6" data-bgposition="center bottom" data-bgpositionend="center top" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                        <div class="layer">
+
+                            <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text p-0 border-0"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="230"
+                                 data-fontsize="['35','25','20','17']"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1200"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-textAlign="center"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3; white-space: nowrap;color:white !important;letter-spacing:1px !important; line-height:50px !important;">
+                                Zero Touch Patient Onboarding.
+                            </div>
+
+                            <div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="340"
+                                 data-width="['650','650','480','360']"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1400"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-textAlign="center"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3; max-width: 650px; white-space: normal;color:white !important;">
+                                RPM Made Easy.
+                            </div>
+
+                            <div class="tp-caption customin ltl tp-resizeme"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="450"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1550"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3;">
+                                <a href="/RequestDemo/Schedule" class="button button-border button-white button-light button-large button-rounded text-right m-0">
+                                    <span style="color:white !important;font-size:20px !important; line-height:30px !important;padding:15px !important;">Request Demo</span>
+                                    <i class="icon-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 3 -->
+                    <li data-transition="slideup" data-slotamount="1" data-masterspeed="1500" data-thumb="/Content/canvas/WebSite Images/Sliders/Slider 3/Hero3.jpg" data-delay="10000" data-saveperformance="off" data-title="Unlimited Possibilities">
+                        <!-- MAIN IMAGE -->
+                        <img src="~/Content/canvas/WebSite Images/Sliders/Slider 3/Hero3.jpg" alt="kenburns6" data-bgposition="center bottom" data-bgpositionend="center top" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                        <div class="layer">
+
+                            <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text p-0 border-0"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="230"
+                                 data-fontsize="['35','25','20','17']"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1200"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-textAlign="center"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3; white-space: nowrap;color:white !important;letter-spacing:1px !important; line-height:50px !important;">
+                                Full Service Remote Patient Monitoring.
+                            </div>
+
+                            <div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="340"
+                                 data-width="['650','650','480','360']"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1400"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-textAlign="center"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3; color: #333; max-width: 650px; white-space: normal;color:white !important;">
+                                We Manage All Aspects Of Your RPM.
+                            </div>
+
+                            <div class="tp-caption customin ltl tp-resizeme"
+                                 data-x="middle" data-hoffset="0"
+                                 data-y="top" data-voffset="450"
+                                 data-transform_in="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;s:800;e:Power4.easeOutQuad;"
+                                 data-speed="800"
+                                 data-start="1550"
+                                 data-easing="easeOutQuad"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="1000"
+                                 data-endeasing="Power4.easeIn" style="z-index: 3;">
+                                <a href="/RequestDemo/Schedule" class="button button-border button-white button-light button-large button-rounded text-right m-0">
+                                    <span style="color:white !important;font-size:20px !important; line-height:30px !important;padding:15px !important;">Request Demo</span>
+                                    <i class="icon-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- END REVOLUTION SLIDER -->
+
+    </div>
+</section>
+
+<!-- Content============================================= -->
+<section id="content">
+    <div class="content-wrap">
+
+
+
+        <div class="row clearfix align-items-stretch bottommargin-lg" style="margin-top:-80px !important;margin-bottom:0px !important; padding-top:0px !important;">
+
+            <div class="col-lg-3 col-md-6 dark center col-padding" style="background-color: #ffffff;">
+                @*<i class="i-plain i-xlarge mx-auto icon-health"></i>*@
+                <img src="~/Content/canvas/WebSite Images/1.png" alt="Reduced admissions -  Remote Patient Monitoring" style=" width: 25%;" />
+                <div class="counter counter-lined"><span data-from="0" data-to="38" data-refresh-interval="50" data-speed="2000"></span>%</div>
+                <h5>
+                    Reduced Readmissions
+                </h5>
+            </div>
+
+            <div class="vl"></div>
+            <div class="col-lg-3 col-md-6 dark center col-padding" style="background-color: #ffffff; ">
+                @*<i class="i-plain i-xlarge mx-auto icon-line2-graph"></i>*@
+                <img src="~/Content/canvas/WebSite Images/2.png" alt="Improved patient satisfaction -  Remote Patient Monitoring" style=" width: 25%;" />
+                <div class="counter counter-lined"><span data-from="0" data-to="25" data-refresh-interval="100" data-speed="2500"></span>%</div>
+                <h5>
+                    Improved Patient Satisfaction
+                </h5>
+            </div>
+
+            <div class="vl"></div>
+            <div class="col-lg-3 col-md-6 dark center col-padding" style="background-color: #ffffff; ">
+                @*<i class="i-plain i-xlarge mx-auto icon-money"></i>*@
+                <img src="~/Content/canvas/WebSite Images/3.png" alt="Increased practice revenue - Remote Patient Monitoring" style=" width: 25%;" />
+                <div class="counter counter-lined"><span data-from="0" data-to="17" data-refresh-interval="25" data-speed="3500"></span>%</div>
+                <h5>
+                    Practice Cost Reductions
+                </h5>
+            </div>
+
+            <div class="vl"></div>
+            <div class="col-lg-3 col-md-6 dark center col-padding" style="background-color: #ffffff; ">
+                @*<i class="i-plain i-xlarge mx-auto icon-user"></i>*@
+                <img src="~/Content/canvas/WebSite Images/4.png" alt="Benefits -  Remote Patient Monitoring" style=" width: 25%;" />
+                <div class="counter counter-lined">$<span data-from="0" data-to="210" data-refresh-interval="30" data-speed="2700"></span></div>
+                <h5>
+                    Income Increase Per patient Per Month
+                </h5>
+            </div>
+
+        </div>
+
+        <div class="section mt-0 border-top-0" style="margin:0px !important;">
+            <div class="container clearfix">
+                <div class="heading-block center m-0">
+                    <h3>Who We Serve</h3>
+                </div>
+
+                <div class="row posts-md col-mb-30">
+
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="entry">
+                            <div class="entry-image">
+                                <a href="/patients"><img src="~/Content/canvas/WebSite Images/thumb1.png" alt="Patients -  Remote Patient Monitoring"></a>
+                            </div>
+                            <div class="entry-title title-xs nott" style=" margin-bottom: 25px;">
+                                <h2><a href="/patients">Patients</a></h2>
+                            </div>
+                            <div class="entry-content" style=" height: 170px;">
+                                <p style="text-align:justify;">
+                                    StreamVitals aims to ensure that the patient onboarding process is seamless regarding device set up, guaranteeing that the device works...
+                                </p>
+                            </div>
+                            <a href="/patients" class="button btnoppoosit btnoppoosit1 button-border button-white button-light button-large button-rounded text-right m-0"
+                               style="">
+                                <span>Read More</span>
+                                <i class="icon-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="entry">
+                            <div class="entry-image">
+                                <a href="/practices"><img src="~/Content/canvas/WebSite Images/thumb2.png" alt="Doctors -  Remote Patient Monitoring"></a>
+                            </div>
+                            <div class="entry-title title-xs nott" style="margin-bottom: 23px;">
+                                <h3><a href="/practices">Practices</a></h3>
+                            </div>
+
+                            <div class="entry-content" style=" height: 170px;">
+                                <p style="text-align:justify;">
+                                    Although the phrase remote patient monitoring has been around for years, StreamVitals has developed & is delivering to thousands...<span style="color:white;">and and and</span>
+                                </p>
+                                
+                            </div>
+                            <a href="/practices" class="button btnoppoosit btnoppoosit1 button-border button-white button-light button-large button-rounded text-right m-0"
+                               style="">
+                                <span>Read More</span>
+                                <i class="icon-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="entry">
+                            <div class="entry-image">
+                                <a href="/partners"><img src="~/Content/canvas/WebSite Images/thumb4.png" alt="Partners -  Remote Patient Monitoring"></a>
+                            </div>
+                            <div class="entry-title title-xs nott">
+                                <h3><a href="/partners">Strategic Partners</a></h3>
+                            </div>
+
+                            <div class="entry-content" style=" height: 170px;">
+                                <p style="text-align:justify;">
+                                    StreamVitals solution has been conceived and developed as an enterprise level solution ideally suited to meet the demands of large...
+                                </p>
+                            </div>
+                            <a href="/partners" class="button btnoppoosit btnoppoosit1 button-border button-white button-light button-large button-rounded text-right m-0"
+                               style="">
+                                <span>Read More</span>
+                                <i class="icon-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="entry">
+                            <div class="entry-image">
+                                <a href="/insurers"><img src="~/Content/canvas/WebSite Images/thumb3.png" alt="Health insurance -  Remote Patient Monitoring"></a>
+                            </div>
+                            <div class="entry-title title-xs nott">
+                                <h3><a href="/insurers">Insurance Companies</a></h3>
+                            </div>
+
+                            <div class="entry-content" style=" height: 170px;">
+                                <p style="text-align:justify;">
+                                    StreamVitals, with its remote monitoring suite of products & services can help practices/providers in your networks increase their HEDIS...
+                                </p>
+                            </div>
+                            <a href="/insurers" class="button btnoppoosit btnoppoosit1 button-border button-white button-light button-large button-rounded text-right m-0"
+                               style="">
+                                <span>Read More</span>
+                                <i class="icon-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row clearfix align-items-stretch bottommargin-lg">
+
+            <div class="col-lg-4 col-md-6 dark center col-padding" style="background-color: #075690;">
+                <div>
+                    <a href="/WhyPartner"><h3 class="text-uppercase" style="font-weight: 600;color:white !important">Why Partner With Us</h3></a>
+                    <p style="line-height: 1.8;color:white !important">
+                        We perform as a seamless addition to your practice. Delivering, the devices, technology & ongoing monitoring of your patients, your staff can stay focused on their current responsibilities. Think "Zero Touch"                         <br />
+                        <span style="color:#075690;">and and and</span>
+                    </p>
+                    <i class="icon-bulb bgicon"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 dark center col-padding" style="background-color: #157bc7;">
+                <div>
+                    <h3 class="text-uppercase" style="font-weight: 600;color:white !important">Our Mission</h3>
+                    <p style="line-height: 1.8;color:white !important">To provide leading edge healthcare technology to support better patient outcomes and maximize your Medicare reimbursement!</p>
+                    <i class="icon-cog bgicon"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 dark center col-padding" style="background-color: #389feb;">
+                <div>
+                    <h3 class="text-uppercase" style="font-weight: 600;color:white !important">What we offer</h3>
+                    <p style="line-height: 1.8;color:white !important">We provide a full service, unique platform that is HIPAA compliant and "future proofed". It includes advanced security & communications "layers", to keep your patients engaged in their care program(s).</p>
+                    <i class="icon-thumbs-up bgicon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="oc-clients" class="section bg-transparent mt-0 owl-carousel owl-carousel-full image-carousel footer-stick carousel-widget" data-margin="80" data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="4" data-items-xl="5">
+
+            <div class="oc-item" style=" margin-left: 5px;"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-3.jpg" alt="Pragmedic solutions -  Remote Patient Monitoring" style="margin-top: 25px;"></a></div>
+            <div class="oc-item"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-4.jpg" alt="Enworks - Remote Patient Monitoring" style="margin-top: 63px;"></a></div>
+            <div class="oc-item"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-2.jpg" alt="Maxlink health -  Remote Patient Monitoring" style=" margin-top: 30px;"></a></div>
+            <div class="oc-item"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-1.jpg" alt="Mayo hospital -  Remote Patient Monitoring" style=" height: 200px; width: 2750px;"></a></div>
+            
+        </div>
+
+
+    </div>
+</section>
+<!-- #content end -->

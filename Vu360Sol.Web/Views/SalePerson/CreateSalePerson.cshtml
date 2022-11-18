@@ -1,0 +1,248 @@
+﻿@{
+    ViewBag.Title = "CreateSalePerson";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+<style>
+    #errmsg {
+        color: #e42c3e;
+    }
+
+    .borderclr {
+        border-color: #e42c3e;
+    }
+</style>
+<style>
+    .form-group > label.error {
+        display: block !important;
+        text-transform: none;
+    }
+
+    .form-group input.valid ~ label.error,
+    .form-group input[type="text"] ~ label.error,
+    .form-group input[type="email"] ~ label.error,
+    .form-group input[type="number"] ~ label.error,
+    .form-group select ~ label.error {
+        /*display: none !important;*/
+    }
+
+    .calories-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #template-contactform .btn-outline-dark:not(.disabled):not(.active):not(:hover) {
+        color: #444;
+        background-color: #FFF;
+        border-color: #CED4DA;
+    }
+</style>
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+            <form action="/SalePerson/CreateSalePerson" class="mb-0" id="template-contactform" name="template-contactform" method="post" autocomplete="off" enctype="multipart/form-data">
+                <div class="row gutter-40 col-mb-80">
+                    <div class="col-lg-2"></div>
+                    <div class="postcontent col-lg-5">
+                        <h3>Sale Person</h3>
+                        <div class="form-widget">
+                            <div class="form-result"></div>
+                            <div class="form-process">
+                                <div class="css3-spinner">
+                                    <div class="css3-spinner-scaler"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-FirstName">First Name </label>
+                                    <input type="text" id="template-contactform-FirstName" name="User.FirstName" value="" class="sm-form-control required" required/>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-LastName">Last Name </label>
+                                    <input type="text" id="template-contactform-LastName" name="User.LastName" value="" class="sm-form-control required" required/>
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="template-contactform-phone">Phone </label>
+                                    <input type="text" id="template-contactform-phone" name="User.PhoneNumber" value="" class="sm-form-control required" required />
+                                    <span id="errmsg"></span>
+                                </div>
+
+
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-email" id="lblUserEmail">Email </label>
+                                    <input type="email" id="template-contactform-email" name="User.Email" value="" class="sm-form-control required" required onblur="return chkblnk('template-contactform-email','errorUserEmail','lblUserEmail')" />
+                                    <span id="errorUserEmail" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-Password">Password </label>
+                                    <input type="password" id="template-contactform-Password" name="User.Password" value="" class="sm-form-control " required />
+                                </div>
+
+
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-gender">Gender</label>
+                                    <br />
+                                    @foreach (var item in ViewBag.Gender)
+                                    {
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="radio" name="User.GenderId" value="@item.Id" checked>
+                                            <label class="form-check-label">
+                                                @item.Name
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="col-lg-6 ml-0">
+                                    <div class="col-12 btn-group" role="group">
+                                        <div class="btn-group btn-group-lg mb-2 right" role="group" aria-label="Large Size" style="float:right;margin-top:10px;">
+                                            <a type="button" href="/SalePerson/SalePersonList" class="btn btn-secondary">Back</a>
+                                            <button type="submit" class="btn btn-secondary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="template-contactform-name" style="margin-top: 68px;">Image</label>
+                        <img id="blah" src="~/Content/canvas/images/extras/200x200.gif" alt="your image" style="margin-bottom:20px;width: 293px; height: 239px;" />
+                        <input type='file' name="file" onchange="readURL(this);" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#template-contactform-phone").focusout(function (e) {
+                //debugger;
+                var value = $("#template-contactform-phone").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#template-contactform-phone").addClass("borderclr");
+                    $("#errmsg").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#template-contactform-phone").focusin(function (e) {
+                //debugger;
+
+                $("#template-contactform-phone").removeClass("borderclr");
+                //hide error message
+                $("#errmsg").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+        });
+
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(293)
+                        .height(250);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script>
+        function chkblnk(eid, errid, label) {
+            var x = document.getElementById(eid).value;
+            var lbl = document.getElementById(label).innerText.toLowerCase();
+            if (x == "") {
+                document.getElementById(errid).innerHTML = lbl + " required";
+            }
+            else if (eid == "template-contactform-email") {
+                if (chkeid()) {
+                    var response = UserNameValidate(x);
+                    if (response.status == 200) {
+                        document.getElementById(errid).innerHTML = "";
+                    }
+                    else if (response.responseText.toLowerCase().indexOf('already exist') !== -1) {
+                        document.getElementById(eid).value = "";
+                        document.getElementById(errid).innerHTML = "'" + x + "' Already Exist";
+                    }
+                }
+            }
+            else {
+                document.getElementById(errid).innerHTML = "";
+            }
+        }
+        function chkeid() {
+            var mailformat = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/
+            var e = document.getElementById("template-contactform-email").value;
+            var atpos = e.indexOf("@@");
+            var dotpos = e.lastIndexOf(".");
+            if (e != "" && !e.match(mailformat)) {
+                document.getElementById("errorUserEmail").innerHTML = "invalid email";
+                return false;
+            }
+            else {
+                document.getElementById("errorUserEmail").innerHTML = "";
+                return true;
+            }
+        }
+        function UserNameValidate(value) {
+            var response = $.ajax({
+                type: 'POST',
+                url: "/Registration/UserNameExsist",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                data: JSON.stringify({ 'Email': value }),
+                success: function (response) {
+                    if (response.success) {
+                    } else {
+                    }
+                },
+                error: function (response) {
+                }
+            });
+            return response;
+        }
+
+        //called when key is pressed in textbox
+        $("#template-contactform-phone").focusout(function (e) {
+            //debugger;
+            var value = $("#template-contactform-phone").val();
+            //if the letter is not digit then display error and don't type anything
+            if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                //display error message
+
+                $("#template-contactform-phone").addClass("borderclr");
+                $("#errmsg").html("Only digits are valid in this field.").show();
+                return false;
+            }
+        });
+        $("#template-contactform-phone").focusin(function (e) {
+            //debugger;
+
+            $("#template-contactform-phone").removeClass("borderclr");
+            //hide error message
+            $("#errmsg").html("Only digits are valid in this field.").hide();
+            return false;
+
+        });
+    </script>
+
+}
+
+

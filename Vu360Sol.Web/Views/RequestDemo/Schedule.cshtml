@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/_StaticPagesLayout.cshtml";
+}
+<script src="~/Content/canvas/js/jquery.js"></script>
+<link href="~/Content/cp/clockpicker.css" rel="stylesheet" />
+<link href="~/Content/cp/standalone.css" rel="stylesheet" />
+<script src="~/Content/cp/clockpicker.js"></script>
+
+<style>
+    .popover.clockpicker-popover {
+        z-index: 1050;
+    }
+    .fc-toolbar h2 {
+        color: #1c79bd;
+    }
+    #errmsg {
+        color: red;
+    }
+</style>
+<div id="calender" class="container mt-2">
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#2f6295;color:white;display:initial !important;">
+                <h4 class="modal-title text-center" style="font-size:1.775rem !important;color:white !important;">Request-Demo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/RequestDemo/Schedule" method="post" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">First Name <small>*</small></label>
+                            <input placeholder="First Name" type="text" id="template-contactform-Firstname" name="FirstName" value="" class="sm-form-control" required />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">Last Name <small>*</small></label>
+                            <input placeholder="Last Name" type="text" id="template-contactform-Lastname" name="LastName" value="" class="sm-form-control" required />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-email">Email <small>*</small></label>
+                            <input placeholder="Email" type="email" id="template-contactform-email" name="Email" value="" class="sm-form-control" required />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Phone <span id="errmsg"></span></label>
+                            <input placeholder="Phone" type="text" id="template-contactform-phone" name="Phone" value="" class="sm-form-control" />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">State</label>
+                            <input placeholder="State" type="text" id="template-contactform-Location" name="Location" value="" class="sm-form-control" />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Date</label>
+                            <input placeholder="Date" type="text" id="template-contactform-Date" name="Date" value="" class="sm-form-control" readonly />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Time</label>
+                            <input placeholder="Time" type="text" id="" name="Time" class="sm-form-control clockpicker" required />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="submit" style="float:right;" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Request</span> <i class="icon-angle-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        $("#template-contactform-phone").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && String.fromCharCode(e.which) != '-' && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $('.clockpicker').clockpicker({
+        placement: 'top',
+        twelvehour: true,
+        autoclose: false,
+        donetext: 'Done',
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        
+        GenerateCalender();
+    })
+    function GenerateCalender() {
+        $('#calender').fullCalendar('destroy');
+        $('#calender').fullCalendar({
+            contentHeight: 500,
+            defaultDate: new Date(),
+            timeFormat: 'h(:mm)a',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            //theme: true,
+            //themeSystem: 'bootstrap3',
+            dayClick: function (date) {
+                var Date = date.format('MM/DD/YYYY');
+                $("#template-contactform-Date").val(Date);
+                $("#myModal").modal('show');
+            },
+            validRange: function (nowDate) {
+                return { start: nowDate }
+            }
+        })
+    }
+</script>
+

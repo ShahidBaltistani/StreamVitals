@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Vu360Sol.ViewModel.SalePersons.DoctorAssignedViewModel>
+@{
+    ViewBag.Title = "DoctorAssigned";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+<style>
+    .popover.clockpicker-popover {
+        z-index: 1050;
+    }
+
+    .fc-toolbar h2 {
+        color: #1c79bd;
+    }
+</style>
+<style>
+    .test:after {
+        content: '\2807';
+        font-size: 30px;
+    }
+</style>
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix" style="max-width: 1450px !important">
+            <div class="">
+                <h1 class="text-center">Assigned Doctors</h1>
+            </div>
+            <div class="row gutter-40 col-mb-80">
+                <div class="postcontent col-lg-10 offset-1">
+
+                    <div id="partial" style="max-width:100% !important"></div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+    $(document).ready(function(){
+
+
+        $.ajax({
+            url: '@Url.Action("DoctorAssignedListPage", "DoctorAssign")',
+		})
+            .done(function (response) {
+                //debugger;
+            $("#partial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+    </script>
+}

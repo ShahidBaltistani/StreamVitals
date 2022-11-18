@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tabs mx-auto mb-0 clearfix" id="tab-login-register">
+                        <ul class="tab-nav tab-nav2 center clearfix">
+                            <li class="inline-block active"><a id="RequestsForDemo" style="cursor:pointer;">Requests For Demo</a></li>
+                            <li class="inline-block"><a id="inquiries" style="cursor:pointer;">inquiries</a></li>
+                            <li class="inline-block"><a id="Approval" style="cursor:pointer;">Approval</a></li>
+                        </ul>
+                        <div class="tab-container">
+                            <div class="tab-content">
+                                <div class="card mb-0">
+                                    <div class="card-body">
+                                        <div id="partial">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+    $(document).ready(function(){
+
+        $("#RequestsForDemo").css("background-color", "#1c79bc");
+        $("#RequestsForDemo").css("color", "white");
+
+        $.ajax({
+            url: '@Url.Action("FailToImportDoctorsPage", "FailToImportDoctorsLog")',
+		})
+        .done(function (response) {
+            $("#partial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+        $("#RequestsForDemo").click(function () {
+            $("#partial").load('/Inquiry/GetAllVisitorForLearning');
+            
+            $("#LearnMore").css("background-color", "#1c79bc");
+            $("#LearnMore").css("color", "white");
+            $("#ReadytoGetStarted").css("background-color", "#f5f5f5");
+            $("#ReadytoGetStarted").css("color", "inherit");
+        });
+    </script>
+}

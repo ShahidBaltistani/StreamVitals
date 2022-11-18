@@ -1,0 +1,256 @@
+﻿@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_StaticPagesLayout.cshtml";
+}
+<style>
+    #errmsg, #feedback {
+        font-family: Poppins,sans-serif;
+        color: #e42c3e;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .borderclr {
+        border-color: #e42c3e;
+    }
+</style>
+<style>
+    .form-group > label.error {
+        display: block !important;
+        text-transform: none;
+    }
+
+    .form-group input.valid ~ label.error,
+    .form-group input[type="text"] ~ label.error,
+    .form-group input[type="email"] ~ label.error,
+    .form-group input[type="number"] ~ label.error,
+    .form-group select ~ label.error {
+        /*display: none !important;*/
+    }
+
+    .calories-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #contactForm .btn-outline-dark:not(.disabled):not(.active):not(:hover) {
+        color: #444;
+        background-color: #FFF;
+        border-color: #CED4DA;
+    }
+</style>
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+
+            <div class="row gutter-40 col-mb-80">
+                <!-- Postcontent
+                ============================================= -->
+                <div class="postcontent col-lg-12">
+
+                    <h1>Send us an Email</h1>
+
+                    <div class="form-widget">
+
+                        <div class="form-result"></div>
+
+                        @*Hubspot contact us form script*@
+                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
+                        <script>
+                            hbspt.forms.create({
+                                portalId: "8939327",
+                                formId: "7f02668d-7c05-4ef3-b58e-0aa593f88aa6"
+                            });
+                        </script>
+
+                        <!--<form class="mb-0" id="contactForm">-->
+
+                          @*<div class="form-process">
+                                <div class="css3-spinner">
+                                    <div class="css3-spinner-scaler"></div>
+                                </div>
+                            </div>*@
+
+                            <!--<div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="txtFirstNameContact">First Name <small>*</small></label>
+                                    <input type="text" id="txtFirstNameContact" name="FirstName" value="" class="sm-form-control required" placeholder="Enter your First Name" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="txtLastName">Last Name <small>*</small></label>
+                                    <input type="text" id="txtLastNameContact" name="LastName" value="" class="sm-form-control required" placeholder="Enter your Last Name" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="txtEmail">Email <small>*</small><span id="feedback"></span></label>
+                                    <input type="email" id="txtEmailContact" name="Email" value="" class="required email sm-form-control" placeholder="Enter your Email Address" />
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="txtPhone">Phone </label>
+                                    <input type="text" id="txtPhoneContact" name="Phone" value="" class="sm-form-control required" placeholder="Enter your Phone Number" />
+                                    <span id="errmsg"></span>
+                                </div>
+                                <div class="w-100"></div>
+
+                                <div class="col-12 form-group">
+                                    <label for="txtMessage">Message</label>
+                                    <textarea class=" sm-form-control" id="txtMessageContact" name="Message" rows="6" cols="30" placeholder="Enter your Message"></textarea>
+                                </div>
+
+                                <div class="col-12 form-group d-none">
+                                    <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <button id="btnCotactSubmit" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Send Message</span> <i class="icon-angle-right"></i></button>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="prefix" value="template-contactform-">
+
+                        </form>-->
+
+                    </div>
+
+                </div><!-- .postcontent end -->
+                <!-- Sidebar
+                ============================================= -->
+                <!-- .sidebar end -->
+            </div>
+
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#txtPhoneContact").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhoneContact").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhoneContact").addClass("borderclr");
+                    $("#errmsg").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhoneContact").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhoneContact").removeClass("borderclr");
+                //hide error message
+                $("#errmsg").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+        });
+
+    </script>
+    <script>
+        $("#btnCotactSubmit").on("click", function () {
+
+            if (validateContactForm()) {
+                ////debugger;
+                // var $form = $('#contactForm');
+                var firstName = $("#txtFirstNameContact");
+                var lastName = $("#txtLastNameContact");
+                var email = $("#txtEmailContact");
+                var PhoneContact = $("#txtPhoneContact");
+                var txtMessageContact = $("#txtMessageContact");
+                var data0 = { FirstName: firstName.val().trim(), LastName: lastName.val().trim(), Email: email.val().trim(), Phone: PhoneContact.val().trim(), Message: txtMessageContact.val().trim() };
+
+                var json = JSON.stringify(data0);
+
+                //  console.log($form);
+                $.ajax({
+                    type: 'POST',
+                    url: "/home/SendVisitorEmail",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: json,
+                    success: function (response) {
+                        if (response.success) {
+                            swal({
+                                title: "Success!",
+                                text: response.responseText,
+                                type: "success"
+                            }).then(
+                                function (okay) {
+                                    if (okay) {
+                                        location.reload(true);
+                                        // window.location.href = "/Registration/Login1";
+                                    }
+                                }
+                            );
+
+                        } else {
+                            swal("Error", response.responseText, "error").then(
+                                function (okay) {
+                                    if (okay) {
+                                        location.reload(true);
+                                    }
+                                }
+                            );
+
+                        }
+                    },
+                    error: function (response) {
+                    }
+                })
+            }
+        });
+
+        function validateContactForm() {
+            ////debugger;
+            var firstName = $("#txtFirstNameContact");
+            var lastName = $("#txtLastNameContact");
+            var email = $("#txtEmailContact");
+
+            //$("#txtPhoneContact").keypress(function (e) {
+            //    //if the letter is not digit then display error and don't type anything
+            //    if (e.which != 8 && e.which != 0 && String.fromCharCode(e.which) != '-' && (e.which < 48 || e.which > 57)) {
+            //        //display error message
+            //        $("#errmsg").html("Only digits are valid in this field.").show();
+            //        return false;
+            //    }
+            //});
+
+            $("#txtPhoneContact").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhoneContact").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+                    $("#txtPhoneContact").addClass("borderclr");
+                    $("#errmsg").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhoneContact").focusin(function (e) {
+                //debugger;
+                $("#txtPhoneContact").removeClass("borderclr");
+                //hide error message
+                $("#errmsg").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+
+            if (firstName.val().trim() == "" || lastName.val().trim() == "" || email.val().trim() == "") {
+                //swal("Error", "Please fill required field", "error");
+                return false;
+            }
+            else {
+
+                return true;
+            }
+        }
+    </script>
+
+   
+}

@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+
+<section id="content">
+    <div class="content-wrap" style="padding:45px !important;">
+        <div class="container clearfix">
+            <div class="row gutter-40 ">
+                <div class="postcontent col-lg-6">
+                    <div id="requestDemoPartial" style="max-width:100% !important"></div>
+                </div>
+
+                <div class="postcontent col-lg-6">
+                    <div id="approvalPartial" style="max-width:100% !important"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="content-wrap" style="padding:0px !important;">
+        <div class="container clearfix">
+
+            <div class="row gutter-40 col-mb-80">
+
+                <div class="postcontent col-lg-12 ">
+
+                    <div class="jumbotron" style="background-color: #f9f9f9c7 !important">
+                        <h4>Inquiries</h4>
+                        @*<div class="row">
+                            <div class="col-lg-6">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group ">
+                                    <select id="Gender" name="" class="form-control">
+                                        <option value="3" selected disabled>None</option>
+                                        <option value="1">Last 7 days</option>
+                                        <option value="2">Last 30 days</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>*@
+
+                        <div class="tabs mx-auto mb-0 clearfix" id="tab-login-register">
+                            <ul class="tab-nav tab-nav2 center clearfix">
+                                <li class="inline-block active"><a id="LearnMore" style="cursor:pointer;">Learn More</a></li>
+                                <li class="inline-block"><a id="ReadytoGetStarted" style="cursor:pointer;">Ready to Get Started</a></li>
+                            </ul>
+                            <div class="tab-container">
+                                <div class="tab-content">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div id="partialview">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style=" margin-top: 20px;">
+                            <div class="col-md-6 text-right"><a href="/Inquiry/Index" class="btn btn-primary" style="background-color:#1abc9c;">View All</a></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+@Html.Partial("_NoteModelDashboardRequestDemo")
+@Html.Partial("_DetailModelDashboardRequestDemo")
+@section scripts {
+    <script>
+    $(document).ready(function(){
+
+
+        $.ajax({
+            url: '@Url.Action("Approval", "Dashboard")',
+		})
+            .done(function (response) {
+                
+            $("#approvalPartial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+
+        $.ajax({
+            url: '@Url.Action("RequestDemoListPage", "Dashboard")',
+		})
+            .done(function (response) {
+                
+                $("#requestDemoPartial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+
+    });
+    </script>
+    <script>
+        $("#LearnMore").click(function () {
+            $.ajax({
+            url: '@Url.Action("GetAllVisitorForLearning", "Dashboard")',
+		    })
+            .done(function (response) {
+                $("#LearnMore").css("background-color", "#1c79bc");
+                $("#LearnMore").css("color", "white");
+                $("#ReadytoGetStarted").css("background-color", "#f5f5f5");
+                $("#ReadytoGetStarted").css("color", "inherit");
+                $("#partialview").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+            });
+        });
+    </script>
+    <script>
+        $("#ReadytoGetStarted").click(function () {
+           $.ajax({
+            url: '@Url.Action("GetAllVisitorForStarting", "Dashboard")',
+		    })
+            .done(function (response) {
+                $("#ReadytoGetStarted").css("background-color", "#1c79bc");
+                $("#ReadytoGetStarted").css("color", "white");
+                $("#LearnMore").css("background-color", "#f5f5f5");
+                $("#LearnMore").css("color", "inherit");
+                $("#partialview").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+            });
+        });
+    </script>
+    <script>
+    $(document).ready(function(){
+
+
+        $.ajax({
+            url: '@Url.Action("GetAllVisitorForLearning", "Dashboard")',
+		})
+            .done(function (response) {
+                $("#LearnMore").css("background-color", "#1c79bc");
+                $("#LearnMore").css("color", "white");
+                $("#partialview").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+    </script>
+    <script>
+        function NoteModalDB(Id) {
+            $("#ReferenceId").val(Id);
+            NotesDB(Id);
+            $("#notemodalDB").modal("show");
+        }
+        function NotesDB(Id) {
+            $.ajax({
+                type: "GET",
+                url: "/Note/List/" + Id,
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    debugger
+                    $('#NotesTableDB').html('');
+                    $.each(data, function (i, item) {
+                        rows = "<tr><td>" + item.Discription + "</td><td><a data-model-id='" + item.Id + "' onclick='Delete(this)' style='cursor:pointer;color:red'><i class='icon icon-trash'></i></a></td></tr>";
+                        $('#NotesTableDB').append(rows);
+                    });
+                },
+                error: function (result) {
+                    alert('Please Try Again...');
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+
+            // Button Working
+            $('#btnnote').prop('disabled', true);
+            $('#Discription').keyup(function () {
+                if ($(this).val() != '') {
+                    $('#btnnote').prop('disabled', false);
+                }
+            });
+
+            // Save Note
+
+            $("#btnnote").click(function (e) {
+
+                if ($("#Discription").val() == "") {
+                    $("#Discription").focus();
+                    $("#errmsg").html("Please Fill Notes Field").show().fadeOut(5000);
+                    return false;
+                }
+
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    //beforeSend: function () {
+                    //    $("#btnnote").html("Please Wait...");
+                    //},
+                    url: "/Note/Insert",
+                    data: $("#formnote").serialize(),
+                    success: function (result) {
+                        $('#Discription').val('');
+                        if (result) {
+                            var Id = $("#ReferenceId").val();
+                            NotesDB(Id)
+                        }
+                    },
+                    //complete: function () {
+                    //    $("#btnnote").html("Add Notes");
+                    //    },
+                    error: function (result) {
+                        alert('Please Try Again...');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function RequestDemoDetail(Id) {
+            debugger
+            //$("#ReferenceId").val(Id);
+            RequestDemoDetails(Id);
+            
+        }
+        function RequestDemoDetails(Id) {
+            debugger
+            $.ajax({
+                type: "GET",
+                url: "/RequestDemo/GetById/" + Id,
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    debugger
+                    $("#fname").html(data.FirstName);
+                    $("#lname").html(data.LastName);
+                    $("#fullname").html(data.FullName);
+                    $("#email").html(data.Email);
+                    $("#phone").html(data.Phone);
+                    $("#location").html(data.Location);
+                    $("#date").html(data.Dates);
+                    $("#time").html(data.Time);
+                    //$("#dname").html(data.Doctor.FirstName);
+                    $("#requestDemoModel").modal("show");
+                },
+                error: function (result) {
+                    alert('Please Try Again...');
+                }
+            });
+        }
+    </script>
+
+}
+
+
+

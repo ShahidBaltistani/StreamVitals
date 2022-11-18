@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+<script src="~/Content/canvas/js/jquery.js"></script>
+<style>
+    .fc-toolbar h2 {
+        color: #1c79bd;
+    }
+    .portlet.calendar .fc-event .fc-title {
+        color: white;
+    }
+</style>
+<div id="calender" class="container mt-2" style=" margin-top: 36px !important;">
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2f6295 !important; color: white;">
+                <h5 class="modal-title"><span id="eventTitle"  style="color:white !important;"></span></h5>
+            </div>
+
+            <div class="modal-body">
+                <div style="text-align:center;">
+                    <span id="pDetails"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background-color:#1abc9c;color:white;" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var events = [];
+        $.ajax({
+            type: "POST",
+            url: "/DoctorSchedule/DocScheduleList",
+            success: function (data) {
+
+                console.log(data);
+
+                $.each(data, function (i, v) {
+                    events.push({
+                        //For FullName
+                        //patient: v.FullName,
+                        //
+                        title: v.FullName,
+                        //For --
+                        //description: v.,
+                        //For Date
+                        start: moment(v.Date),
+                        //For --
+                        //end: v.,
+                        //For --
+                        //color: v.,
+                        //For --
+                        //allDay: v.,
+                    });
+                })
+                console.log(events);
+                GenerateCalender(events);
+            },
+            error: function () {
+                alert('failed');
+            }
+        })
+
+
+        GenerateCalender();
+    })
+    function GenerateCalender(events) {
+        $('#calender').fullCalendar('destroy');
+        $('#calender').fullCalendar({
+            contentHeight: 500,
+            defaultDate: new Date(),
+            timeFormat: 'h(:mm)a',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            eventLimit: true,
+            eventColor: '#1abc9c',
+            eventTextColor: 'white',
+            events: events,
+            eventClick: function (calEvent) {
+                $('#myModal #eventTitle').text(calEvent.title);
+                var $description = $('<div/>');
+                $description.append($('<p/>').html('<b>Name :</b>' + calEvent.title));
+                $description.append($('<p/>').html('<b>Date:</b>' + calEvent.start.format("DD-MMM-YYYY")));
+                $('#myModal #pDetails').empty().html($description);
+                $('#myModal').modal();
+            },
+            eventRender: function (event, element) {
+                element.find('.fc-title').append("--" + event.start.format("DD-MMM-YY"));
+                element.find('.fc-time').empty();
+            }
+        })
+    }
+</script>
+

@@ -1,0 +1,187 @@
+﻿@model Vu360Sol.ViewModel.SharedViewModels.RequestDemoViewModelPaginationModel
+
+    <div class="jumbotron" style="background-color: #f9f9f9c7 !important;height: 735px;position: relative;">
+        <h4>Request For Demo</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group ">
+                    <div class="form-group">
+                        <input class="form-control" id="searchInputRequetDemo" type="text" value="@Model.SearchTerm" placeholder="Search by First Name ,Last Name and Email" style="margin-bottom: 10px;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <select id="daysRequestDemo" name="daysRequestDemo" class="form-control">
+                    <option value="0">Today</option>
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+            <tbody id="myTable">
+
+                @if (Model.requestDemoViewModels.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="6" style="text-align:center;font-size:20px;font-weight:bold;">
+                            No RequestDemoes...
+
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.requestDemoViewModels)
+                    {
+                        <tr id="contentrow1">
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Date.ToShortDateString()</td>
+                            <td>@item.Time</td>
+                            <td>
+                                <ul class="navbar-nav mx-auto absolute-right ">
+                                    <li class="nav-item dropdown">
+                                        <a class="" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon icon-list"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdown05" style="min-width: 14rem !important;left:-41px !important">
+
+                                            <a href="#" onclick="NoteModalDB(@item.Id)" style="text-decoration: none; padding: 6px">
+                                                <i class="icon icon-file-add"></i>
+                                                Notes
+                                            </a><br />
+                                            <a href="#" onclick="RequestDemoDetail(@item.Id)" style="text-decoration: none; padding: 6px">
+                                                <i class="icon icon-eye"></i>
+                                                Details
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+            <tfooter>
+
+            </tfooter>
+
+        </table>
+
+    </div>
+
+    <div class="row" style="position: absolute; bottom: 20px !important;width: 95%;">
+        <div class="col-lg-12">
+            <ul class="pagination pagination-rounded mt-5">
+                @if (@Model.page != null && @Model.page.TotalPages > 1)
+                {
+
+                    if (@Model.page.CurrentPage > 1)
+                    {
+                        <li class="page-item" title="First">
+                            <a class="requestDemoPageButtons page-link" data-pageno="1"><i class="icon-line-chevrons-left"></i></a>
+                        </li>
+
+                        <li class="page-item" title="Previous">
+                            <a class="requestDemoPageButtons page-link" data-pageno="@(@Model.page.CurrentPage - 1)"><i class="icon-line-chevron-left"></i></a>
+                        </li>
+                    }
+                    for (var page = @Model.page.StartPage; page <= @Model.page.EndPage; page++)
+                    {
+                        string activeClass = @Model.page.CurrentPage == page ? "active" : string.Empty;
+
+                        <li class="page-item @activeClass">
+                            <a class="requestDemoPageButtons page-link" data-pageno="@page">@page</a>
+
+                        </li>
+                    }
+                    if (@Model.page.CurrentPage < @Model.page.TotalPages)
+                    {
+                        <li class="page-item" title="Next">
+                            <a class="requestDemoPageButtons page-link" data-pageno="@(@Model.page.CurrentPage + 1)"><i class="icon-line-chevron-right"></i></a>
+                        </li>
+                        <li class="page-item" title="Last">
+                            <a class="requestDemoPageButtons page-link" data-pageno="@Model.page.TotalPages"><i class="icon-line-chevrons-right"></i></a>
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="row" style=" margin-top: 20px;">
+                
+                <div class="col-md-12" style=" text-align: center;">
+                    <a href="/RequestDemo/Requests" class="btn btn-primary" style="background-color:#1abc9c;">View All</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(".requestDemoPageButtons").click(function () {
+        
+        var data= {
+				pageNo: $(this).attr("data-pageNo"),
+                search: '@Model.SearchTerm',
+                UserId: $("#hfUserId").val(),
+                Days: $("#daysRequestDemo").val()
+        }
+        requestDemoSendRequest(data);
+	});
+    $('#searchInputRequetDemo').on('input', function (e) {
+        var data = {
+            search: $('#searchInputRequetDemo').val()
+        };
+        requestDemoSendRequest(data);
+    });
+
+
+
+    function requestDemoSendRequest(data) {
+        	$.ajax({
+			url: '@Url.Action("RequestDemoListPage", "Dashboard")',
+			data:data
+		})
+            .done(function (response) {
+                
+                var DDvalue = $('#daysRequestDemo').val();
+                $("#requestDemoPartial").html(response);
+                var search = $("#searchInputRequetDemo");
+                $("#daysRequestDemo").val(DDvalue);
+                //search.focus();
+                var strLength = search.val().length * 2;
+                search[0].setSelectionRange(strLength, strLength);
+
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("FAIL");
+            });
+    };
+</script>
+<script>
+    $("#daysRequestDemo").change(function () {
+        var data = {
+            Days: $('#daysRequestDemo').val()
+        };
+        requestDemoSendRequest(data);
+
+    })
+</script>

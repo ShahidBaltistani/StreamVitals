@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vu360Sol.Web", "Vu360Sol.Web\Vu360Sol.Web.csproj", "{B96BEC38-E4F9-49E8-A47B-3E636E85BA89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VU360Sol.API", "VU360Sol.API\VU360Sol.API.csproj", "{38FD3AF0-450C-421C-84C9-2185E3E6E083}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VU360Sol.Database", "VU360Sol.Database\VU360Sol.Database.csproj", "{9694E338-FAA3-43A2-AE05-1A0B1C2B073B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vu360Sol.Repository", "Vu360Sol.Repository\Vu360Sol.Repository.csproj", "{8E9BD9FE-ADE7-4EC8-9C86-3D23BD1A24D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vu360Sol.ViewModel", "Vu360Sol.ViewModel\Vu360Sol.ViewModel.csproj", "{996A1733-E4D5-4843-BE7D-780F78A0B17F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VU360Sol.Entities", "VU360Sol.Entities\VU360Sol.Entities.csproj", "{3DAA81FC-6B46-4798-B888-E6D846FB99B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vu360Sol.Service", "Vu360Sol.Service\Vu360Sol.Service.csproj", "{2E6E1BB9-5805-4177-90BF-6B92A167F489}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B96BEC38-E4F9-49E8-A47B-3E636E85BA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96BEC38-E4F9-49E8-A47B-3E636E85BA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96BEC38-E4F9-49E8-A47B-3E636E85BA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96BEC38-E4F9-49E8-A47B-3E636E85BA89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38FD3AF0-450C-421C-84C9-2185E3E6E083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38FD3AF0-450C-421C-84C9-2185E3E6E083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38FD3AF0-450C-421C-84C9-2185E3E6E083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38FD3AF0-450C-421C-84C9-2185E3E6E083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9694E338-FAA3-43A2-AE05-1A0B1C2B073B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9694E338-FAA3-43A2-AE05-1A0B1C2B073B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9694E338-FAA3-43A2-AE05-1A0B1C2B073B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9694E338-FAA3-43A2-AE05-1A0B1C2B073B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E9BD9FE-ADE7-4EC8-9C86-3D23BD1A24D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E9BD9FE-ADE7-4EC8-9C86-3D23BD1A24D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E9BD9FE-ADE7-4EC8-9C86-3D23BD1A24D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E9BD9FE-ADE7-4EC8-9C86-3D23BD1A24D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996A1733-E4D5-4843-BE7D-780F78A0B17F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996A1733-E4D5-4843-BE7D-780F78A0B17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996A1733-E4D5-4843-BE7D-780F78A0B17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996A1733-E4D5-4843-BE7D-780F78A0B17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DAA81FC-6B46-4798-B888-E6D846FB99B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DAA81FC-6B46-4798-B888-E6D846FB99B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DAA81FC-6B46-4798-B888-E6D846FB99B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DAA81FC-6B46-4798-B888-E6D846FB99B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E6E1BB9-5805-4177-90BF-6B92A167F489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E6E1BB9-5805-4177-90BF-6B92A167F489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E6E1BB9-5805-4177-90BF-6B92A167F489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E6E1BB9-5805-4177-90BF-6B92A167F489}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {463AAB88-7B66-4CC6-8DD9-83A05C6FA4EC}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.vu360solutions.org/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = VU360Sol.API\\VU360Sol.API.csproj
+		SccProjectName1 = VU360Sol.API
+		SccLocalPath1 = VU360Sol.API
+		SccProjectUniqueName2 = VU360Sol.Database\\VU360Sol.Database.csproj
+		SccProjectName2 = VU360Sol.Database
+		SccLocalPath2 = VU360Sol.Database
+		SccProjectUniqueName3 = VU360Sol.Entities\\VU360Sol.Entities.csproj
+		SccProjectName3 = VU360Sol.Entities
+		SccLocalPath3 = VU360Sol.Entities
+		SccProjectUniqueName4 = Vu360Sol.Repository\\Vu360Sol.Repository.csproj
+		SccProjectName4 = Vu360Sol.Repository
+		SccLocalPath4 = Vu360Sol.Repository
+		SccProjectUniqueName5 = Vu360Sol.Service\\Vu360Sol.Service.csproj
+		SccProjectName5 = Vu360Sol.Service
+		SccLocalPath5 = Vu360Sol.Service
+		SccProjectUniqueName6 = Vu360Sol.ViewModel\\Vu360Sol.ViewModel.csproj
+		SccProjectName6 = Vu360Sol.ViewModel
+		SccLocalPath6 = Vu360Sol.ViewModel
+		SccProjectUniqueName7 = Vu360Sol.Web\\Vu360Sol.Web.csproj
+		SccProjectName7 = Vu360Sol.Web
+		SccLocalPath7 = Vu360Sol.Web
+	EndGlobalSection
+EndGlobal

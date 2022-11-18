@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ExportFile";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+            <div class="">
+                <h1 class="text-center">Doctors</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form method="get" action="/ImportDoctorList/DownloadFileFromFolder" enctype="multipart/form-data">
+                        <h2>Download Excel Template</h2>
+                        <button class="btn btn-success" type="submit">Download Template</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <form class="" method="post" action="/ImportDoctorList/Import" enctype="multipart/form-data">
+                        <h2>Select File</h2>
+                        <div class="row">
+                            <div class="col-lg-8">
+
+                                <input class="form-control" name="excelfile" type="file" required />
+
+                                @Html.Raw(ViewBag.Error)
+
+                            </div>
+                            <div class="col-lg-4">
+                                <button class="btn btn-danger" type="submit">Import</button>
+                                @*<a class="btn btn-primary" id="" href="/Home/ProductTable">List Of Products</a>*@
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,171 @@
+﻿@model Vu360Sol.ViewModel.SharedViewModels.UserViewModelPaginationModel
+
+<div class="jumbotron" style="background-color: #f9f9f9c7 !important;height: 735px;position: relative;">
+    <h4>Approval</h4>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input class="form-control" id="searchInputApproval" type="text" value="@Model.SearchTerm" placeholder="Search by First Name ,Last Name and Email" style="margin-bottom: 10px;">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <select id="daysApproval" name="daysApproval" class="form-control">
+                <option value="1" selected disabled>Today</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+            </select>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Type</th>
+                    <th>Approval</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                @if (Model.userViewModels.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="6" style="text-align:center;font-size:20px;font-weight:bold;">
+                            No Users...
+
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.userViewModels)
+                    {
+                        <tr id="contentrow1">
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Role.Name</td>
+                            <td>
+                                <a href="@Url.Action("UserApproval","Dashboard",new { Id = item.Id})" style="text-decoration: none; padding: 6px">
+                                    <i class="icon icon-line-activity"></i>
+                                    Approve
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+
+   
+    <div class="row" style="position: absolute; bottom: 20px !important;width: 95%;">
+       
+            <div class="col-lg-12">
+                <ul class="pagination pagination-rounded mt-5">
+                    @if (@Model.page != null && @Model.page.TotalPages > 1)
+                    {
+
+                    if (@Model.page.CurrentPage > 1)
+                    {
+                    <li class="page-item" title="First">
+                        <a class="approvalPageButtons page-link" data-pageno="1"><i class="icon-line-chevrons-left"></i></a>
+                    </li>
+
+                    <li class="page-item" title="Previous">
+                        <a class="approvalPageButtons page-link" data-pageno="@(@Model.page.CurrentPage - 1)"><i class="icon-line-chevron-left"></i></a>
+                    </li>
+                    }
+                    for (var page = @Model.page.StartPage; page <= @Model.page.EndPage; page++)
+                    {
+                    string activeClass = @Model.page.CurrentPage == page ? "active" : string.Empty;
+
+                    <li class="page-item @activeClass">
+                        <a class="approvalPageButtons page-link" data-pageno="@page">@page</a>
+
+                    </li>
+                    }
+                    if (@Model.page.CurrentPage < @Model.page.TotalPages)
+                    {
+                    <li class="page-item" title="Next">
+                        <a class="approvalPageButtons page-link" data-pageno="@(@Model.page.CurrentPage + 1)"><i class="icon-line-chevron-right"></i></a>
+                    </li>
+                    <li class="page-item" title="Last">
+                        <a class="approvalPageButtons page-link" data-pageno="@Model.page.TotalPages"><i class="icon-line-chevrons-right"></i></a>
+                    </li>
+                    }
+                    }
+                </ul>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12" style=" text-align: center;">
+                    <a href="/Approval/ApprovalsList" class="btn btn-primary" style="background-color:#1abc9c;">View All</a>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+    <script>
+    $(".approvalPageButtons").click(function () {
+        //debugger;
+        var data= {
+				pageNo: $(this).attr("data-pageNo"),
+                search: '@Model.SearchTerm',
+            UserId: $("#hfUserId").val(),
+            Days: $("#daysApproval").val()
+        }
+        SendApprovalRequest(data);
+	});
+    $('#searchInputApproval').on('input', function (e) {
+        debugger
+        var data = {
+            search: $('#searchInputApproval').val()
+        };
+        SendApprovalRequest(data);
+    });
+
+
+
+    function SendApprovalRequest(data) {
+        debugger
+        	$.ajax({
+			url: '@Url.Action("Approval", "Dashboard")',
+			data:data
+		})
+            .done(function (response) {
+                var DDvalue = $('#daysApproval').val();
+                //debugger;
+                $("#approvalPartial").html(response);
+                $('#daysApproval').val(DDvalue);
+                var search = $("#searchInputApproval");
+                //search.focus();
+                var strLength = search.val().length * 2;
+                search[0].setSelectionRange(strLength, strLength);
+
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("FAIL");
+            });
+        };
+
+    </script>
+    <script>
+        $("#daysApproval").change(function () {
+            var data = {
+                Days: $('#daysApproval').val()
+            };
+            SendApprovalRequest(data);
+
+        })
+    </script>
+

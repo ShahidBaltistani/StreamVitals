@@ -1,0 +1,916 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&amp;display=swap" rel="stylesheet" type="text/css" />
+    <link href="~/Content/canvas/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/canvas/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/dark2.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/canvas/css/custom.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/canvas/include/rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/canvas/include/rs-plugin/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/canvas/include/rs-plugin/css/navigation.css">
+
+    <link href="~/Search-Through-Text-Finder/style.css" rel="stylesheet" />
+
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link href="~/Content/cp/clockpicker.css" rel="stylesheet" />
+    <link href="~/Content/cp/standalone.css" rel="stylesheet" />
+    <link href="~/Content/calender/jquery-ui-for-open-calender.css" rel="stylesheet" />
+
+    <!-- Sidenavbar styles============================================= -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/Sidebar/css/style.css" rel="stylesheet" />
+
+
+    @Html.Partial("_GoogleAnalytics")
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/canvas/WebSite Images/logo-02 small.png" style="width:100%;">
+    <style>
+
+        .revo-slider-emphasis-text {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            font-family: 'Poppins', sans-serif;
+            padding: 15px 20px;
+            border-top: 2px solid #FFF;
+            border-bottom: 2px solid #FFF;
+        }
+
+        .revo-slider-desc-text {
+            font-size: 20px;
+            font-family: 'Lato', sans-serif;
+            width: 650px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .revo-slider-caps-text {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tp-video-play-button {
+            display: none !important;
+        }
+
+        .tp-caption {
+            white-space: nowrap;
+        }
+
+        .layer {
+            background-color: #379cc8bd;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #errmsgfooter {
+            color: #e42c3e;
+        }
+
+        .borderclr {
+            border-color: #e42c3e;
+        }
+    </style>
+    <style>
+        .form-group > label.error {
+            display: block !important;
+            text-transform: none;
+        }
+
+        .form-group input.valid ~ label.error,
+        .form-group input[type="text"] ~ label.error,
+        .form-group input[type="email"] ~ label.error,
+        .form-group input[type="number"] ~ label.error,
+        .form-group select ~ label.error {
+            /*display: none !important;*/
+        }
+
+        .calories-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #contactForm .btn-outline-dark:not(.disabled):not(.active):not(:hover) {
+            color: #444;
+            background-color: #FFF;
+            border-color: #CED4DA;
+        }
+    </style>
+
+    <style>
+        .dropbtn {
+            /*background-color: #3498DB;*/
+            color: #333;
+            /* padding: 16px;*/
+            font-size: .8125rem;
+            border: none;
+            font-weight: 700;
+            background: transparent;
+            cursor: pointer;
+        }
+
+            .dropbtn:hover, .dropbtn:focus {
+                /* background-color: #2980B9;*/
+            }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 190px;
+            overflow: auto;
+            left: -190px;
+            margin-top: -33px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+
+</head>
+<body class="stretched">
+    <div id="wrapper" class="clearfix">
+
+        <!-- Header============================================= -->
+        <header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+            <div id="header-wrap" style="background:white !important;">
+                <div class="container">
+                    <div class="header-row">
+
+                        <!-- Logo============================================= -->
+                        <div id="logo" class="logo500">
+                            <a href="/" class="standard-logo logoclick" data-dark-logo="/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;"><img src="~/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;" alt="StreamVitals - Remote Patient Monitoring"></a>
+                            <a href="/" class="retina-logo logoclick" data-dark-logo="/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;"><img src="~/Content/canvas/WebSite Images/logo-02.png" style="height: 45px;" alt="StreamVitals - Remote Patient Monitoring"></a>
+
+                            @if (User.Identity.IsAuthenticated && Session["UserId"] != null)
+                            {
+                                if (Session["Role"] != null && Session["Role"].ToString() == "1")
+                                {
+                                    <a type="button" href="/Dashboard/Home" id="sidebarCollapse" class="btn btn-primary" style="margin-left: 35px;border: none;background-color:#2f6295;color: white;font-size: 20px !important;">
+                                        <i class=" icon-line-bar-graph"></i>
+                                        <span class="sr-only">Toggle Menu</span>
+                                    </a>
+                                }
+                                if (Session["Role"] != null && Session["Role"].ToString() == "2")
+                                {
+                                    <a type="button" href="/DoctorSchedule/DocSchedule" id="sidebarCollapse" class="btn btn-primary" style="margin-left: 35px;border: none;background-color:#2f6295;color: white;font-size: 20px !important;">
+                                        <i class="icon-line-bar-graph"></i>
+                                        <span class="sr-only">Toggle Menu</span>
+                                    </a>
+                                }
+                                if (Session["Role"] != null && Session["Role"].ToString() == "3")
+                                {
+                                    <a type="button" href="/SalePersonDashboard/Index" id="sidebarCollapse" class="btn btn-primary" style="margin-left: 35px;border: none;background-color:#2f6295;color: white;font-size: 20px !important;">
+                                        <i class="icon-line-bar-graph"></i>
+                                        <span class="sr-only">Toggle Menu</span>
+                                    </a>
+                                }
+
+                            }
+                        </div>
+
+                        <!-- #logo end -->
+                        <div class="header-misc">
+                            <!-- Top Search============================================= -->
+                            <div id="" class="header-misc-icon" style="color:black !important;">
+
+                                <a href="#" id="">
+                                    <i class="icon-line-search" data-toggle="modal" data-target=".bs-example-modal-lg" title=""></i>
+                                    @*<i class="icon-line-cross" id="SearchCross"></i>*@
+                                </a>
+
+                            </div>
+                            @if (User.Identity.IsAuthenticated && Session["UserId"] != null)
+                            {
+                                <div id="top-cart" class="header-misc-icon  d-sm-block">
+                                    <a href="#" id="top-cart-trigger"><i class="icon-user"></i></a>
+                                    <div class="top-cart-content" style=" border-top:none !important;right: -38px ;">
+                                        <div class="top-cart-items" style="padding-bottom: 0rem !important; padding-left: 0px !important;">
+                                            @if (Session["Role"] != null && Session["Role"].ToString() == "1")
+                                            {
+                                                <div class="top-cart-item">
+                                                    <div class="top-cart-item-desc">
+                                                        <div class="top-cart-item-desc-title">
+                                                            <a href="/Dashboard/Home"><i class="icon-line-bar-graph"></i> Dashboard </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            }
+                                            @if (Session["Role"] != null && Session["Role"].ToString() == "2")
+                                            {
+                                                <div class="top-cart-item">
+                                                    <div class="top-cart-item-desc">
+                                                        <div class="top-cart-item-desc-title">
+                                                            <a href="/DoctorSchedule/DocSchedule"><i class="icon-file"></i> Schedule</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (Session["Role"] != null && Session["Role"].ToString() == "3")
+                                            {
+                                                <div class="top-cart-item" style="">
+                                                    <div class="top-cart-item-desc">
+                                                        <div class="top-cart-item-desc-title">
+                                                            <a href="/SalePersonDashboard/Index"><i class="icon-line-bar-graph"></i> Dashboard </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        </div>
+                                        
+                                        <div class="top-cart-item">
+                                            <div class="top-cart-item-desc">
+                                                <div class="top-cart-item-desc-title">
+                                                    <a href="/Registration/ChangePassword/@Session["UserId"]"><i class="icon-key"></i> Change Password</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="top-cart-item">
+                                            <div class="top-cart-item-desc">
+                                                <div class="top-cart-item-desc-title">
+                                                    <a href="/Registration/Logout"><i class="revicon-logout"></i> Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- #top-search end -->
+                        </div>
+                        @if (!User.Identity.IsAuthenticated || Session["UserId"] == null)
+                        {
+                            <div id="primary-menu-trigger">
+                                <svg class="svg-trigger" viewBox="0 0 100 100"><path d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"></path><path d="m 30,50 h 40"></path><path d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"></path></svg>
+                            </div>
+                        }
+
+
+                        <!-- Primary Navigation============================================= -->
+                        <nav class="primary-menu">
+
+                            <ul class="menu-container">
+
+                                <li class="menu-item">
+                                    <a class="menu-link" href="#"><div class="menu-link1">Who We Serve</div></a>
+                                    <ul class="sub-menu-container">
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/Practices"><div><i class=""></i>Practices</div></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/Patients"><div><i class=""></i>Patients</div></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/Partners"><div><i class=""></i>Partners</div></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item mega-menu">
+                                    <a class="menu-link" href="/Howworks"><div class="menu-link1">How does it work</div></a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-link" href="#"><div class="menu-link1">Resource Library</div></a>
+                                    <ul class="sub-menu-container">
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="#"><div><i class=""></i>Resource Library</div></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/FAQ"><div><i class=""></i>FAQs</div></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="#"><div><i class=""></i>Blog</div></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-link" href="#"><div class="menu-link1">The Company</div></a>
+                                    <ul class="sub-menu-container">
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/AboutUs"><div><i class=""></i>About Us</div></a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/ContactUs"><div><i class=""></i>Contact Us</div></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item mega-menu">
+                                    <a href="/RequestDemo/Schedule" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Request Demo</span> <i class="icon-angle-right"></i></a>
+                                </li>
+
+                                @if (!User.Identity.IsAuthenticated || Session["UserId"] == null)
+                                {
+                                    <li class="menu-item mega-menu">
+                                        <a href="/Account" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Login</span> <i class="icon-angle-right"></i></a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-wrap-clone"></div>
+        </header>
+
+
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" style="max-width:100% !important;">
+                <div class="modal-body">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#2f6295 !important">
+                            <h4 class="modal-title" id="myModalLabel" style="color: white !important;">Website Searching</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-8 col-lg-10">
+                                    <input type="text" id="CustomSearch" class="form-control searchonsmall" placeholder="Type  to search..." autocomplete="off" style=" background-color: white !important; /* padding: 20px; */ margin-top: 22px; margin-left: 10px; border-radius: 5px;height:unset;" />
+                                </div>
+                                <div class="col-4 col-lg-2">
+                                    <a class="button button-border button-white button-light button-rounded text-right searchonsmall1" onclick="SearchingThroughButton()" style="margin-top: 20px;">
+                                        <span>Search</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="-col-lg-12">
+                                    <div id="searchpartial"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #header end -->
+
+        <div class="app" data-finder-wrapper data-finder-scroll-offset="100">
+            <div class="content" data-finder-content>
+                <div style="height:100%; display: flex;width:100%;">
+                    <div style="width: 100%;">
+                        <div style="width:100%;">
+                            @RenderBody()
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- Footer============================================= -->
+
+    <footer id="footer" class="dark" style="background: url('/Content/canvas/images/footer-bg.jpg') repeat; background-size: cover; margin-top:0px !important;">
+        <div class="container">
+            <!-- Footer Widgets============================================= -->
+            <div class="footer-widgets-wrap">
+
+                <div class="row col-mb-50">
+                    <div class="col-md-8">
+                        <div class="widget clearfix">
+
+                            <img src="~/Content/canvas/images/Logo-white.png" alt="StreamVitals - Remote Patient Monitoring" class="alignleft" style="margin-top: 8px; padding-right: 18px;  width:35%;">
+
+                            <div class="line" style="margin: 30px 0;"></div>
+
+                            <div class="row col-mb-30">
+                                <div class="col-6 col-lg-3 widget_links">
+                                    <a href="/Howworks">
+                                        <h4 style="color:#ffffff !important;">How Does it work</h4>
+
+                                    </a>
+                                </div>
+                                <div class="col-6 col-lg-3 widget_links">
+                                    <h4 style="color:#ffffff !important;">Who We Serve</h4>
+
+                                    <ul>
+                                        <li><a href="/Practices">Practices</a></li>
+                                        <li><a href="/Patients">Patients</a></li>
+                                        <li><a href="/Partners">Partners</a></li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="col-6 col-lg-3 widget_links">
+                                    <h4 style="color:#ffffff !important;">Resource Library</h4>
+
+                                    <ul>
+                                        <li><a href="#">Resource Library</a></li>
+                                        <li><a href="/FAQ">FAQs</a></li>
+                                        <li><a href="#">Blog</a></li>
+
+
+                                    </ul>
+                                </div>
+
+                                <div class="col-6 col-lg-3 widget_links">
+                                    <h4 style="color:#ffffff !important;">The Company</h4>
+
+                                    <ul>
+                                        <li><a href="/AboutUs">About Us</a></li>
+                                        <li><a href="/ContactUs">Contact Us</a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="widget subscribe-widget clearfix">
+                            <h5 style="color:rgba(255,255,255,0.75)"><strong>Stay updated</strong> to Our Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</h5>
+                            <div class="widget-subscribe-form-result"></div>
+                            <form class="row" id="contactLayoutForm">
+                                <div class="form-process">
+                                    <div class="css3-spinner">
+                                        <div class="css3-spinner-scaler"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label style="color:#ffffff !important;">First Name:</label> <small>*</small>
+                                    <input type="text" id="txtFirstName" name="FirstName" class="form-control required" value="" placeholder="Enter First Name">
+                                    <span id="errorFirstName" class="text-danger"></span>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label style="color:#ffffff !important;">Last Name:</label> <small>*</small>
+                                    <input type="text" id="txtLastName" name="LastName" class="form-control required" value="" placeholder="Enter Last Name">
+                                    <span id="errorLastName" class="text-danger"></span>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label style="color:#ffffff !important;">Email:</label> <small>*</small>
+                                    <input type="email" id="txtEmail" name="Email" class="form-control required" value="" placeholder="Enter Email">
+                                    <span id="errorEmail" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6 form-group">
+                                    <label style="color:#ffffff !important;">Phone: </label>
+                                    <input type="text" id="txtPhone" name="Phone" class="form-control required" value="" placeholder="Enter Phone">
+                                    <span id="errmsgfooter"></span>
+                                    <span id="errorEmail" class="text-danger"></span>
+                                </div>
+
+                                @*<div class="col-12 form-group">
+                                    <label>Message:</label>
+                                    <textarea class="form-control" id="txtMessage" name="Message" rows="3" cols="30" placeholder="Enter your Message"></textarea>
+
+                                </div>*@
+                                <div class="col-12">
+                                    <button id="btnSubmit" class="button button-border button-white button-light button-large button-rounded text-right m-0" style="color:white !important; border-color:white !important;"><span>Register</span> <i class="icon-angle-right"></i></button>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div><!-- .footer-widgets-wrap end -->
+        </div>
+
+
+        <!-- Copyrights============================================= -->
+        <div id="copyrights">
+            <div class="container">
+
+                <div class="row justify-content-between col-mb-30">
+                    <div class="col-md-12 col-lg-12 text-center">
+
+                        Copyrights &copy; 2020 All Rights Reserved by StreamVitals.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+        <!-- #footer end -->
+
+    </div>
+    <!-- Go To Top============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts============================================= -->
+    <script src="~/Content/canvas/js/jquery.js"></script>
+    <script src="~/Content/canvas/js/plugins.min.js"></script>
+
+    <!-- Footer Scripts============================================= -->
+    <script src="~/Content/canvas/js/functions.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+    <script src="~/Content/canvas/include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="~/Search-Through-Text-Finder/jquery.scrollto.js"></script>
+    <script src="~/Search-Through-Text-Finder/jquery.finder.js"></script>
+    <script src="~/Search-Through-Text-Finder/jquery.highlight.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="~/Content/cp/clockpicker.js"></script>
+    <script src="~/Content/calender/jfoc.js"></script>
+
+    <!-- Sidenavbar main js============================================= -->
+    <script src="~/Content/Sidebar/js/main.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+    @RenderSection("scriptsSalePersonDashboard", required: false)
+    <script>
+        var tpj = jQuery;
+        var revapi31;
+        var $ = jQuery.noConflict();
+
+        tpj(document).ready(function () {
+            if (tpj("#rev_slider_679_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_679_1");
+            } else {
+                revapi31 = tpj("#rev_slider_679_1").show().revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "include/rs-plugin/js/",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "none",
+                    delay: 16000,
+                    hideThumbs: 200,
+                    thumbWidth: 100,
+                    thumbHeight: 50,
+                    thumbAmount: 5,
+                    navigation: {
+                        keyboardNavigation: "on",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        onHoverStop: "off",
+                        touch: {
+                            touchenabled: "on",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 1,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
+                        },
+                        arrows: {
+                            style: "hades",
+                            enable: true,
+                            hide_onmobile: false,
+                            hide_onleave: false,
+                            tmp: '<div class="tp-arr-allwrapper">	<div class="tp-arr-imgholder"></div></div>',
+                            left: {
+                                h_align: "left",
+                                v_align: "center",
+                                h_offset: 10,
+                                v_offset: 0
+                            },
+                            right: {
+                                h_align: "right",
+                                v_align: "center",
+                                h_offset: 10,
+                                v_offset: 0
+                            }
+                        },
+                    },
+                    responsiveLevels: [1140, 1024, 778, 480],
+                    visibilityLevels: [1140, 1024, 778, 480],
+                    gridwidth: [1140, 1024, 778, 480],
+                    gridheight: [700, 768, 960, 720],
+                    lazyType: "none",
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    fullScreenAutoWidth: "off",
+                    fullScreenAlignForce: "off",
+                    fullScreenOffsetContainer: "",
+                    fullScreenOffset: "0px",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            }
+
+            revapi31.on("revolution.slide.onloaded", function (e) {
+                setTimeout(function () { SEMICOLON.slider.sliderDimensions(); }, 200);
+            });
+
+            revapi31.on("revolution.slide.onchange", function (e, data) {
+                SEMICOLON.slider.revolutionSliderMenu();
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#txtPhone").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhone").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhone").addClass("borderclr");
+                    $("#errmsgfooter").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhone").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhone").removeClass("borderclr");
+                //hide error message
+                $("#errmsgfooter").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+        });
+
+    </script>
+    <script>
+        $("#btnSubmit").on("click", function () {
+            if (validateForm()) {
+                //var $form = $('contactLayoutForm');
+                $.ajax({
+                    type: 'POST',
+                    url: "/home/SendVisitorEmail",
+                    dataType: "json",
+                    data: $("#contactLayoutForm").serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            swal({
+                                title: "Success!",
+                                text: response.responseText,
+                                type: "success"
+                            }).then(
+                                function (okay) {
+                                    if (okay) {
+                                        location.reload(true);
+                                        // window.location.href = "/Registration/Login1";
+                                    }
+                                }
+                            );
+
+                        } else {
+                            swal("Error", response.responseText, "error").then(
+                                function (okay) {
+                                    if (okay) {
+                                        location.reload(true);
+                                    }
+                                }
+                            );
+
+                        }
+                    },
+                    error: function (response) {
+                    }
+                })
+            }
+        });
+
+        function validateForm() {
+            ////debugger;
+            var firstName = $("#txtFirstName");
+            var lastName = $("#txtLastName");
+            var email = $("#txtEmail");
+
+            //called when key is pressed in textbox
+            $("#txtPhone").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhone").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhone").addClass("borderclr");
+                    $("#errmsgfooter").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhone").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhone").removeClass("borderclr");
+                //hide error message
+                $("#errmsgfooter").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+
+            if (firstName.val().trim() == "" || lastName.val().trim() == "" || email.val().trim() == "") {
+                //swal("Error", "Please fill required field", "error");
+                return false;
+            }
+            else {
+
+                return true;
+            }
+        }
+    </script>
+
+    <script>
+        function chkblnk(eid, errid, label) {
+            var x = document.getElementById(eid).value;
+            var lbl = document.getElementById(label).innerText.toLowerCase();
+            if (x == "") {
+                document.getElementById(errid).innerHTML = lbl + " required";
+            }
+            else if (eid == "txtEmail") {
+                if (chkeid()) {
+                    var response = UserNameValidate(x);
+                    if (response.status == 200) {
+                        document.getElementById(errid).innerHTML = "";
+                    }
+                    else if (response.responseText.toLowerCase().indexOf('already exist') !== -1) {
+                        document.getElementById(eid).value = "";
+                        document.getElementById(errid).innerHTML = "'" + x + "' Already Exist";
+                    }
+                }
+            }
+            else {
+                document.getElementById(errid).innerHTML = "";
+            }
+        }
+        function chkeid() {
+            var mailformat = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/
+            var e = document.getElementById("txtEmail").value;
+            var atpos = e.indexOf("@@");
+            var dotpos = e.lastIndexOf(".");
+            if (e != "" && !e.match(mailformat)) {
+                document.getElementById("errorUserEmail").innerHTML = "invalid email";
+                return false;
+            }
+            else {
+                document.getElementById("errorUserEmail").innerHTML = "";
+                return true;
+            }
+        }
+
+    </script>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mySidenav").style.display = "block";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <script>
+        $.fn.pressEnter = function (fn) {
+
+            return this.each(function () {
+                $(this).bind('enterPress', fn);
+                $(this).keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        $(this).trigger("enterPress");
+                    }
+                })
+            });
+        };
+        function SearchingThroughButton() {
+
+            var val = $("#CustomSearch").val();
+
+            $("#searchpartial").show();
+
+            if (val == "") {
+                $("#searchpartial").html("");
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Searching/Search",
+                data: {
+                    Search: val
+                },
+                success: function (data) {
+                    $("#searchpartial").html(data);
+                }
+            })
+        }
+
+
+        $("#CustomSearch").pressEnter(function () {
+
+            $("#searchpartial").show();
+
+            var val = $(this).val();
+            if (val == "") {
+                $("#searchpartial").html("");
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Searching/Search",
+                data: {
+                    Search: val
+                },
+                success: function (data) {
+                    $("#searchpartial").html(data);
+                }
+            })
+        });
+        function HideSearchingPartialView() {
+            $("#searchpartial").hide();
+            $("#CustomSearch").val("");
+        }
+    </script>
+
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/8939327.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+</body>
+</html>
+

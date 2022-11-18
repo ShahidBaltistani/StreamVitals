@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "DoctorsReport";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+<style>
+    .overlay {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background: rgba(255,255,255,0.8) url("/Content/canvas/WebSite Images/Sliders/motion.gif") center no-repeat;
+    }
+
+        /* Turn off scrollbar when body element has the loading class */
+        body.loading {
+            overflow: hidden;
+        }
+            /* Make spinner image visible when body element has the loading class */
+            body.loading .overlay {
+                display: block;
+            }
+</style>
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+            <div class="">
+                <h1 class="text-center">Doctors List</h1>
+            </div>
+            <div class="row gutter-40 col-mb-80">
+                <div class="postcontent col-lg-12" style="margin-bottom: 266px !important;">
+
+                    <div class="row">
+
+                        <div class="col-lg-4">
+
+                            <div class="form-group ">
+                                <select id="drpReportOf" name="" class="form-control">
+                                    <option value="" selected disabled>None</option>
+                                    <option value="all">All Doctors</option>
+                                    <option value="con">Connected Doctors</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="btn-group" style=" margin-top: 10px;">
+                                <input type="checkbox" id="ckNotes" style="margin: 2px 10px 0 0" /><label for="ckNotes"> Notes Required</label>
+                            </div>
+                        </div>
+
+                        @*<div class="col-lg-4">
+                                <button type="button" class="btn btn-secondary" id="SubmittBtn" onclick="location.href='@Url.Action("ExportDoctorsReport")'">Download Doctors Report</button>
+                            </div>*@
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-primary export buttondown" value="xls">Export Report</button>
+                                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: initial !important;">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item export buttondown" href="#" value="pdf">Export in PDF</a>
+                                    <a href="#" class="dropdown-item export buttondown" value="xls">Export in Excel</a>
+                                </div>
+                                <div class="overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+
+         $(".export").click(function () {
+            //debugger;
+            var reportOf = $("#drpReportOf option:selected").val();
+             var exportTo = $(this).attr("value");
+             var notesRequired = $("#ckNotes").prop('checked');
+             if (reportOf.trim() != "" && exportTo.trim() != "") {
+
+           //$.blockUI({ message: '<h3>Please wait a moment...</h3>' });
+
+            $.ajax({
+                url: '@Url.Action("ExportDoctorsReport")',
+                data: {
+                    ReportOf: reportOf,
+                    ExportTo: exportTo,
+                    NotesRequired: notesRequired
+                },
+             }).done(function (data) {
+               // $.unblockUI();
+
+                 if (data.success && data.fileName != "") {
+
+                     window.location.href = "@Url.RouteUrl(new
+                        {  Action = "Download"})/?file=" + data.fileName + "&type=" + exportTo;
+                 }
+                 else if (data.success == false) {
+                     //alert(data.message);
+                     swal(data.message);
+                 }
+            });
+            }
+
+        });
+
+    </script>
+
+    <script>
+        // Initiate an Ajax request on button click
+        $(document).on("click", ".buttondown", function () {
+            // Adding timestamp to set cache false
+            //$.get("" + $.now(), function (data) {
+            //    $("body").html(data);
+            //});
+        });
+
+        // Add remove loading class on body element depending on Ajax request status
+        $(document).on({
+            ajaxStart: function () {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function () {
+                $("body").removeClass("loading");
+            }
+        });
+    </script>
+}

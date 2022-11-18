@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B96BEC38-E4F9-49E8-A47B-3E636E85BA89}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vu360Sol.Web</RootNamespace>
+    <AssemblyName>Vu360Sol.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44313</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.8.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.8\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.4\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.10.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.10.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.10.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.10.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApprovalController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DoctorAssignController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\DoctorScheduleController.cs" />
+    <Compile Include="Controllers\ErrorPageController.cs" />
+    <Compile Include="Controllers\FailToImportDoctorsLogController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportDoctorListController.cs" />
+    <Compile Include="Controllers\InquiryController.cs" />
+    <Compile Include="Controllers\JortFormController.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Controllers\PracticeController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\RequestDemoController.cs" />
+    <Compile Include="Controllers\SalePersonController.cs" />
+    <Compile Include="Controllers\SalePersonDashboardController.cs" />
+    <Compile Include="Controllers\SearchingController.cs" />
+    <Compile Include="DataSets\StreamVitalsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StreamVitalsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmailConfigurationSetup.cs" />
+    <Compile Include="Reports\DataSetFill.cs" />
+    <Compile Include="Reports\DoctorReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoctorReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Email.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SVRPDJortForm\PatientAppointmentFormData.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\calender\jfoc.js" />
+    <Content Include="Content\calender\jquery-ui-for-open-calender.css" />
+    <Content Include="Content\canvas\css\animate.css" />
+    <Content Include="Content\canvas\css\bootstrap.css" />
+    <Content Include="Content\canvas\css\colorse799.css" />
+    <Content Include="Content\canvas\css\custom.css" />
+    <Content Include="Content\canvas\css\dark.css" />
+    <Content Include="Content\canvas\css\dark2.css" />
+    <Content Include="Content\canvas\css\font-icons.css" />
+    <Content Include="Content\canvas\css\fonts\font-icons.svg" />
+    <Content Include="Content\canvas\css\fonts\lined-icons.svg" />
+    <Content Include="Content\canvas\css\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\canvas\css\intro-fonts.css" />
+    <Content Include="Content\canvas\css\magnific-popup.css" />
+    <Content Include="Content\canvas\css\swiper.css" />
+    <Content Include="Content\canvas\images\banner\1.png" />
+    <Content Include="Content\canvas\images\banner\10.png" />
+    <Content Include="Content\canvas\images\banner\2.png" />
+    <Content Include="Content\canvas\images\banner\3.png" />
+    <Content Include="Content\canvas\images\banner\4.png" />
+    <Content Include="Content\canvas\images\banner\5.png" />
+    <Content Include="Content\canvas\images\banner\6.png" />
+    <Content Include="Content\canvas\images\banner\7.png" />
+    <Content Include="Content\canvas\images\banner\8.png" />
+    <Content Include="Content\canvas\images\banner\9.png" />
+    <Content Include="Content\canvas\images\banner\f1.jpg" />
+    <Content Include="Content\canvas\images\banner\f2.png" />
+    <Content Include="Content\canvas\images\banner\logo.png" />
+    <Content Include="Content\canvas\images\banner\maxlink.png" />
+    <Content Include="Content\canvas\images\banner\mayo.png" />
+    <Content Include="Content\canvas\images\banner\mayoedited.jpg" />
+    <Content Include="Content\canvas\images\banner\paramedic.jpg" />
+    <Content Include="Content\canvas\images\banner\pragmedic-logo-design-06-01.png" />
+    <Content Include="Content\canvas\images\df430ded-23f4-4ca4-adc9-3e5f9fb21590.jpg" />
+    <Content Include="Content\canvas\images\extras\200x200.gif" />
+    <Content Include="Content\canvas\images\footer-bg.jpg" />
+    <Content Include="Content\canvas\images\imgwebinar\logo-1.jpg" />
+    <Content Include="Content\canvas\images\imgwebinar\logo-2.jpg" />
+    <Content Include="Content\canvas\images\imgwebinar\plus.jpg" />
+    <Content Include="Content\canvas\images\Logo-01.png" />
+    <Content Include="Content\canvas\images\logo-1.jpg" />
+    <Content Include="Content\canvas\images\logo-2.jpg" />
+    <Content Include="Content\canvas\images\Logo-white.png" />
+    <Content Include="Content\canvas\images\pattern.png" />
+    <Content Include="Content\canvas\images\pattern3.png" />
+    <Content Include="Content\canvas\images\plus.jpg" />
+    <Content Include="Content\canvas\images\plus.png" />
+    <Content Include="Content\canvas\images\preloader-dark.gif" />
+    <Content Include="Content\canvas\images\world-map.png" />
+    <Content Include="Content\canvas\include\rs-plugin\assets\coloredbg.png" />
+    <Content Include="Content\canvas\include\rs-plugin\assets\gridtile.png" />
+    <Content Include="Content\canvas\include\rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="Content\canvas\include\rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="Content\canvas\include\rs-plugin\assets\gridtile_white.png" />
+    <Content Include="Content\canvas\include\rs-plugin\assets\loader.gif" />
+    <Content Include="Content\canvas\include\rs-plugin\css\closedhand.cur" />
+    <Content Include="Content\canvas\include\rs-plugin\css\layers.css" />
+    <Content Include="Content\canvas\include\rs-plugin\css\navigation.css" />
+    <Content Include="Content\canvas\include\rs-plugin\css\openhand.cur" />
+    <Content Include="Content\canvas\include\rs-plugin\css\settings.css" />
+    <Content Include="Content\canvas\include\rs-plugin\fonts\revicons\revicons90c6.svg" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.actions.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.kenburn.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.migration.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\extensions\revolution.extension.video.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\canvas\include\rs-plugin\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\canvas\js\chart-utils.js" />
+    <Content Include="Content\canvas\js\chart.js" />
+    <Content Include="Content\canvas\js\components\bs-datatable.js" />
+    <Content Include="Content\canvas\js\components\bs-filestyle.js" />
+    <Content Include="Content\canvas\js\components\bs-select.js" />
+    <Content Include="Content\canvas\js\components\bs-switches.js" />
+    <Content Include="Content\canvas\js\components\datepicker.js" />
+    <Content Include="Content\canvas\js\components\daterangepicker.js" />
+    <Content Include="Content\canvas\js\components\moment.js" />
+    <Content Include="Content\canvas\js\components\rangeslider.min.js" />
+    <Content Include="Content\canvas\js\components\select-boxes.js" />
+    <Content Include="Content\canvas\js\components\selectsplitter.js" />
+    <Content Include="Content\canvas\js\components\star-rating.js" />
+    <Content Include="Content\canvas\js\components\timepicker.js" />
+    <Content Include="Content\canvas\js\events-data.js" />
+    <Content Include="Content\canvas\js\functions.js" />
+    <Content Include="Content\canvas\js\holder.js" />
+    <Content Include="Content\canvas\js\jquery.calendario.js" />
+    <Content Include="Content\canvas\js\jquery.js" />
+    <Content Include="Content\canvas\js\plugins.infinitescroll.js" />
+    <Content Include="Content\canvas\js\plugins.jpaginate.js" />
+    <Content Include="Content\canvas\js\plugins.min.js" />
+    <Content Include="Content\canvas\style.css" />
+    <Content Include="Content\canvas\VUWallpaper %28Done%29.jpg" />
+    <Content Include="Content\canvas\WebSite Images\1.png" />
+    <Content Include="Content\canvas\WebSite Images\2.png" />
+    <Content Include="Content\canvas\WebSite Images\3.png" />
+    <Content Include="Content\canvas\WebSite Images\4.png" />
+    <Content Include="Content\canvas\WebSite Images\aboutus_1000.jpg" />
+    <Content Include="Content\canvas\WebSite Images\About\About.jpg" />
+    <Content Include="Content\canvas\WebSite Images\About\logo-1.jpg" />
+    <Content Include="Content\canvas\WebSite Images\About\logo-2.jpg" />
+    <Content Include="Content\canvas\WebSite Images\About\logo-3.jpg" />
+    <Content Include="Content\canvas\WebSite Images\About\logo-4.jpg" />
+    <Content Include="Content\canvas\WebSite Images\bg.jpg" />
+    <Content Include="Content\canvas\WebSite Images\click-button.png" />
+    <Content Include="Content\canvas\WebSite Images\FAQ\FAQ.jpg" />
+    <Content Include="Content\canvas\WebSite Images\FAQ\FAQ_1000.jpg" />
+    <Content Include="Content\canvas\WebSite Images\fuser.png" />
+    <Content Include="Content\canvas\WebSite Images\How_does_Remote_Patient_Monitoring_work %281%29.mp4" />
+    <Content Include="Content\canvas\WebSite Images\illuma-bg.jpg" />
+    <Content Include="Content\canvas\WebSite Images\illuma-button.png" />
+    <Content Include="Content\canvas\WebSite Images\Loader.gif" />
+    <Content Include="Content\canvas\WebSite Images\How_does_Remote_Patient_Monitoring_work.mp4" />
+    <Content Include="Content\canvas\WebSite Images\logo-02 small.png" />
+    <Content Include="Content\canvas\WebSite Images\logo-02.png" />
+    <Content Include="Content\canvas\WebSite Images\PartnersWorking3_1000.jpg" />
+    <Content Include="Content\canvas\WebSite Images\Patients_1000.jpg" />
+    <Content Include="Content\canvas\WebSite Images\Practice2_1000.jpg" />
+    <Content Include="Content\canvas\WebSite Images\Sliders\motion.gif" />
+    <Content Include="Content\canvas\WebSite Images\Sliders\Slider 1\Hero1.jpg" />
+    <Content Include="Content\canvas\WebSite Images\Sliders\Slider 2\Hero2.jpg" />
+    <Content Include="Content\canvas\WebSite Images\Sliders\Slider 3\Hero3.jpg" />
+    <Content Include="Content\canvas\WebSite Images\thumb1.png" />
+    <Content Include="Content\canvas\WebSite Images\thumb2.png" />
+    <Content Include="Content\canvas\WebSite Images\thumb3.png" />
+    <Content Include="Content\canvas\WebSite Images\thumb4.png" />
+    <Content Include="Content\cp\clockpicker.css" />
+    <Content Include="Content\cp\clockpicker.js" />
+    <Content Include="Content\cp\standalone.css" />
+    <Content Include="Content\Pagination\jquery.simplePagination.js" />
+    <Content Include="Content\Pagination\simplePagination.css" />
+    <Content Include="Content\Sidebar\css\style.css" />
+    <Content Include="Content\Sidebar\js\main.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Introletter.html" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\canvas\css\fonts\font-icons.eot" />
+    <Content Include="Content\canvas\css\fonts\font-icons.ttf" />
+    <Content Include="Content\canvas\css\fonts\font-icons.woff" />
+    <Content Include="Content\canvas\css\fonts\lined-icons.eot" />
+    <Content Include="Content\canvas\css\fonts\lined-icons.ttf" />
+    <Content Include="Content\canvas\css\fonts\lined-icons.woff" />
+    <Content Include="Content\canvas\css\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\canvas\css\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\canvas\css\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\canvas\css\fonts\Simple-Line-Iconsd41d.eot" />
+    <Content Include="Content\canvas\include\rs-plugin\fonts\revicons\revicons90c6.eot" />
+    <Content Include="Content\canvas\include\rs-plugin\fonts\revicons\revicons90c6.ttf" />
+    <Content Include="Content\canvas\include\rs-plugin\fonts\revicons\revicons90c6.woff" />
+    <Content Include="DataSets\StreamVitalsDataSet.xsc">
+      <DependentUpon>StreamVitalsDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="Content\Sidebar\fonts\.DS_Store" />
+    <None Include="DataSets\StreamVitalsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StreamVitalsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSets\StreamVitalsDataSet.xss">
+      <DependentUpon>StreamVitalsDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ExcelTemplate\DoctorImportTemplate.xlsx" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\doctorscontacted.js" />
+    <Content Include="Scripts\doctorAssign.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Search-Through-Text-Finder\example.html" />
+    <Content Include="Search-Through-Text-Finder\jquery.finder.js" />
+    <Content Include="Search-Through-Text-Finder\jquery.highlight.js" />
+    <Content Include="Search-Through-Text-Finder\jquery.scrollto.js" />
+    <Content Include="Search-Through-Text-Finder\mobile-emulator.css" />
+    <Content Include="Search-Through-Text-Finder\style.css" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Theme2Layout.cshtml" />
+    <Content Include="Search-Through-Text-Finder\.gitattributes" />
+    <Content Include="Search-Through-Text-Finder\.gitignore" />
+    <Content Include="Search-Through-Text-Finder\LICENSE" />
+    <Content Include="Search-Through-Text-Finder\readme.md" />
+    <Content Include="Views\Registration\Account.cshtml" />
+    <Content Include="Views\Doctor\DoctorList.cshtml" />
+    <Content Include="Views\Doctor\CreateDoctor.cshtml" />
+    <Content Include="Views\SalePerson\CreateSalePerson.cshtml" />
+    <Content Include="Views\SalePerson\SalePersonList.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Practices.cshtml" />
+    <Content Include="Views\Home\Patients.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Home\Insurers.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\WhyPartner.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\Howworks.cshtml" />
+    <Content Include="Views\Appointment\BookAppointment.cshtml" />
+    <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\RequestDemo\Schedule.cshtml" />
+    <Content Include="Views\RequestDemo\Thanks.cshtml" />
+    <Content Include="Views\RequestDemo\EmailError.cshtml" />
+    <Content Include="Views\RequestDemo\Requests.cshtml" />
+    <Content Include="Views\ImportDoctorList\ExportFile.cshtml" />
+    <Content Include="Views\ImportDoctorList\ExcelFileData.cshtml" />
+    <Content Include="Views\SalePerson\EditSalePerson.cshtml" />
+    <Content Include="Views\Doctor\UpdateDoctor.cshtml" />
+    <Content Include="Views\Shared\_DoctorAssignModel.cshtml" />
+    <Content Include="Views\DoctorAssign\GetBySalePersonId.cshtml" />
+    <Content Include="Views\Registration\ChangePassword.cshtml" />
+    <Content Include="Views\Approval\ApprovalsList.cshtml" />
+    <Content Include="Views\DoctorSchedule\DocSchedule.cshtml" />
+    <Content Include="Views\DoctorAssign\DoctorAssignedList.cshtml" />
+    <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
+    <Content Include="Views\Inquiry\Index.cshtml" />
+    <Content Include="Views\Inquiry\_VisitorsLearningPartial.cshtml" />
+    <Content Include="Views\ErrorPage\ErrorMessage.cshtml" />
+    <Content Include="Views\Home\Introletter.cshtml" />
+    <Content Include="Views\Home\Introductionenvelope.cshtml" />
+    <Content Include="Views\Home\Introenvelope.cshtml" />
+    <Content Include="Views\Home\Introduction.cshtml" />
+    <Content Include="Views\DoctorAssign\ContactedDoctors.cshtml" />
+    <Content Include="Views\Shared\_DoctorsContactedModel.cshtml" />
+    <Content Include="Views\Reports\DoctorsReport.cshtml" />
+    <Content Include="Views\DoctorAssign\_GetBySalePersonIdPartial.cshtml" />
+    <Content Include="Views\DoctorAssign\_ContactedDoctorsPartial.cshtml" />
+    <Content Include="Views\Shared\_DashboardLayout.cshtml" />
+    <Content Include="Views\Dashboard\Home.cshtml" />
+    <Content Include="Views\FailToImportDoctorsLog\_FailToImportDoctorsLogPartial.cshtml" />
+    <Content Include="Views\FailToImportDoctorsLog\FailToImportDoctorsLog.cshtml" />
+    <Content Include="Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Views\DoctorAssign\_DoctorAssignedList.cshtml" />
+    <Content Include="Views\RequestDemo\_RequestDemoPartial.cshtml" />
+    <Content Include="Views\Doctor\_DoctorPartial.cshtml" />
+    <Content Include="Views\SalePerson\_SalePersonListPartial.cshtml" />
+    <Content Include="Views\Inquiry\_VisitorsStartingPartial.cshtml" />
+    <Content Include="Views\Approval\_DoctorPartial.cshtml" />
+    <Content Include="Views\Approval\_SalePersonListPartial.cshtml" />
+    <Content Include="Views\Shared\_SearchingPartial.cshtml" />
+    <Content Include="Views\Dashboard\_RequestDemo.cshtml" />
+    <Content Include="Views\Dashboard\_ApprovalPartial.cshtml" />
+    <Content Include="Views\Dashboard\_VisitorsLearningPartial.cshtml" />
+    <Content Include="Views\Dashboard\_VisitorsStartingPartial.cshtml" />
+    <Content Include="Views\Shared\_NoteModelDashboardRequestDemo.cshtml" />
+    <Content Include="Views\Shared\_DetailModelDashboardRequestDemo.cshtml" />
+    <Content Include="Views\SalePersonDashboard\Index.cshtml" />
+    <Content Include="Views\SalePersonDashboard\_ContactedDoctorsDB.cshtml" />
+    <Content Include="Views\SalePersonDashboard\_DoctorAssignedListDB.cshtml" />
+    <Content Include="Views\SalePersonDashboard\_VisitorsLearningPartial.cshtml" />
+    <Content Include="Views\SalePersonDashboard\_VisitorsStartingPartial.cshtml" />
+    <Content Include="Views\SalePersonDashboard\_DrAssignDetailModel.cshtml" />
+    <Content Include="Views\SalePersonDashboard\_AddNotesDoctorAssignListModel.cshtml" />
+    <Content Include="Views\Registration\ForgotPassword.cshtml" />
+    <Content Include="Views\Registration\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\_StaticPagesLayout.cshtml" />
+    <Content Include="Views\Shared\_ErrorPageLayout.cshtml" />
+    <Content Include="Views\Practice\_PracticePartial.cshtml" />
+    <Content Include="Views\Practice\PracticeList.cshtml" />
+    <Content Include="Views\Practice\Edit.cshtml" />
+    <Content Include="Views\Practice\Create.cshtml" />
+    <Content Include="Views\JortForm\PaientAppointmentJortFormList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\canvas\css\components\" />
+    <Folder Include="Content\canvas\include\ajax\" />
+    <Folder Include="excelfolder\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Note\" />
+    <Folder Include="Views\Searching\" />
+    <Folder Include="Views\Search\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vu360Sol.ViewModel\Vu360Sol.ViewModel.csproj">
+      <Project>{996a1733-e4d5-4843-be7d-780f78a0b17f}</Project>
+      <Name>Vu360Sol.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\DoctorReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DoctorReport.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59405</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44313/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

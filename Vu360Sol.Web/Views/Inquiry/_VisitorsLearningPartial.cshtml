@@ -1,0 +1,155 @@
+﻿@model Vu360Sol.ViewModel.SharedViewModels.VisitorViewModelPaginationModel
+<div class="row">
+    <div class="col-lg-6">
+    </div>
+    <div class="col-lg-4 offset-2">
+        <div class="input-group mx-auto">
+            <input class="form-control" id="searchInput" type="text" value="@Model.SearchTerm" placeholder="Search by First Name ,Last Name and Email">
+            <div class="input-group-append">
+                <button class="btn btn-info" type="button" id="searchbutton">
+                    <i class="icon-search"></i>
+                </button>
+            </div>
+        </div>
+        @*<div class="input-group mx-auto" style="float:right;margin-top:11px;">
+            <input class="form-control" id="searchInput" type="text" value="@Model.SearchTerm" placeholder="Search by First Name ,Last Name and Email" style="margin-bottom: 10px;">
+        </div>*@
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table" id="content">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Practice</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @if (Model.visitorViewModels.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3" style="text-align:center;font-size:20px;font-weight:bold;">
+                        No Visitor...
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model.visitorViewModels)
+                {
+                    <tr id="contentrow">
+                        <td>@item.FullName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Practice</td>
+                        <td>@item.CreatedOn.ToShortDateString()</td>
+                        <td>@item.CreatedOn.ToShortTimeString()</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <ul class="pagination pagination-rounded mt-5">
+        @if (@Model.page != null && @Model.page.TotalPages > 1)
+        {
+
+            if (@Model.page.CurrentPage > 1)
+            {
+                <li class="page-item" title="First">
+                    <a class="pageButtons page-link" data-pageno="1"><i class="icon-line-chevrons-left"></i></a>
+                </li>
+
+                <li class="page-item" title="Previous">
+                    <a class="pageButtons page-link" data-pageno="@(@Model.page.CurrentPage - 1)"><i class="icon-line-chevron-left"></i></a>
+                </li>
+            }
+            for (var page = @Model.page.StartPage; page <= @Model.page.EndPage; page++)
+            {
+                string activeClass = @Model.page.CurrentPage == page ? "active" : string.Empty;
+
+                <li class="page-item @activeClass">
+                    <a class="pageButtons page-link" data-pageno="@page">@page</a>
+
+                </li>
+            }
+            if (@Model.page.CurrentPage < @Model.page.TotalPages)
+            {
+                <li class="page-item" title="Next">
+                    <a class="pageButtons page-link" data-pageno="@(@Model.page.CurrentPage + 1)"><i class="icon-line-chevron-right"></i></a>
+                </li>
+                <li class="page-item" title="Last">
+                    <a class="pageButtons page-link" data-pageno="@Model.page.TotalPages"><i class="icon-line-chevrons-right"></i></a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+<script>
+    $(".pageButtons").click(function () {
+        //debugger;
+        var data= {
+				pageNo: $(this).attr("data-pageNo"),
+                search: '@Model.SearchTerm',
+                UserId: $("#hfUserId").val()
+        }
+        SendRequest(data);
+	});
+    $.fn.pressEnter = function (fn) {
+        return this.each(function () {
+            $(this).bind('enterPress', fn);
+            $(this).keyup(function (e) {
+                if (e.keyCode == 13) {
+                    $(this).trigger("enterPress");
+                }
+            })
+        });
+    };
+    // On Enter
+    $('#searchInput').pressEnter(function () {
+        var data = {
+            search: $('#searchInput').val()
+        };
+        SendRequest(data);
+    });
+    // For Loading Data.....
+    $('#searchInput').on('input', function (e) {
+        var data = {
+            search: $('#searchInput').val()
+        };
+        if (data.search == "") {
+            SendRequest(data);
+        }
+    });
+    // On Click
+    $('#searchbutton').on('click', function (e) {
+        var data = {
+            search: $('#searchInput').val()
+        };
+        SendRequest(data);
+    });
+
+
+
+    function SendRequest(data) {
+        	$.ajax({
+			url: '@Url.Action("GetAllVisitorForLearning", "Inquiry")',
+			data:data
+		})
+            .done(function (response) {
+                //debugger;
+                $("#partial").html(response);
+                var search = $("#searchInput");
+                search.focus();
+                var strLength = search.val().length * 2;
+                search[0].setSelectionRange(strLength, strLength);
+
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("FAIL");
+            });
+    };
+</script>

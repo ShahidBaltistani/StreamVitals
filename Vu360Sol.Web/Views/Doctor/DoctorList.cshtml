@@ -1,0 +1,188 @@
+﻿@model IEnumerable<Vu360Sol.ViewModel.Doctors.DoctorViewModel>
+@{
+    ViewBag.Title = "DoctorList";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+
+<script src="~/Content/canvas/js/jquery.js"></script>
+<link href="~/Content/Pagination/simplePagination.css" rel="stylesheet" />
+<script src="~/Content/Pagination/jquery.simplePagination.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+@*<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style>
+    .popover.clockpicker-popover {
+        z-index: 1050;
+    }
+
+    .fc-toolbar h2 {
+        color: #1c79bd;
+    }
+</style>
+<style>
+    .test:after {
+        content: '\2807';
+        font-size: 30px;
+    }
+</style>
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    jQuery(function ($) {
+        var items = $("#content #myTable #contentrow");
+        var numItems = items.length;
+        var perPage = 5;
+        items.slice(perPage).hide();
+        $("#pagination").pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: '<',
+            nextText: '>',
+            cssStyle: "light-theme",
+            onPageClick: function (pageNumber) {
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide()
+                    .slice(showFrom, showTo).show();
+            }
+        });
+    });
+</script>
+<script>
+    function deleteDoctor(Id) {
+        var url = "/doctor/DeleteDoctor/" + Id;
+        //var ans = confirm("Are you sure you want to delete this Task ?");
+        //if (ans) {
+        //    $.ajax({
+        //        url: url,
+        //        type: "POST",
+        //        success: function (result) {
+        //            ////debugger
+        //            window.location.href = "/Doctor/DoctorList/";
+        //        },
+        //        error: function () {
+        //            alert('Please Try Again...');
+        //        }
+        //    });
+        //}
+
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure you want to delete this Task ?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((ans) => {
+                if (ans) {
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        success: function () {
+                            //ele.closest("tr").remove();
+                            window.location.href = "/Doctor/DoctorList/";
+                        },
+                        error: function () {
+
+                            swal("Please Try Again...", {
+                                icon: "error",
+                            });
+                        }
+                    });
+                }
+            });
+
+    }
+</script>
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix" style="max-width: 1450px !important">
+            <div class="">
+                <h1 class="text-center">Doctors</h1>
+            </div>
+            <div class="row gutter-40 col-mb-80">
+                <div class="postcontent col-lg-12 ">
+                    <div id="partial" style="max-width:100% !important"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#2f6295;color:white;display:initial !important;">
+                <h5 class="modal-title text-center" style="font-size:1.775rem !important;color:white !important;">
+                    Request-Demo
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" @*id="RequestDemoForm"*@ class="RequestDemoForm">
+                    @*action="/Doctor/Schedule" method="post"*@
+                    <input type="hidden" id="hfDocId" name="DoctorId" />
+                    <input type="hidden" id="hfIsUserRegisterdModal" name="Doctor.User.IsActive" />
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">First Name <small>*</small></label>
+                            <input type="text" id="modalFirstName" name="FirstName" class="form-control required" value="" placeholder="Enter First Name" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">Last Name <small>*</small></label>
+                            <input type="text" id="modalLastName" name="LastName" value="" class="sm-form-control" required placeholder="Enter Last Name" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-email">Email <small>*</small></label>
+                            <input type="email" id="modalEmail" name="Email" value="" class="form-control required" required placeholder="Enter Email" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-phone">Phone</label>
+                            <input type="text" id="modalPhone" name="Phone" value="" class="sm-form-control" placeholder="Enter Phone" />
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-phone">Location</label>
+                            <input type="text" id="modalLocation" name="Location" value="" class="sm-form-control" placeholder="Enter Location" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Date</label>
+                            <input type="date" id="modalDate" name="Date" value="" class="sm-form-control" required placeholder="Select Date" />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Time</label>
+                            <input type="text" id="modalTime" name="Time" class="sm-form-control clockpicker" required placeholder="Select Time" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="button" @*id="btnRequestDemo"*@ style="float:right;" class="btnRequestDemo button button-border button-white button-light button-large button-rounded text-right m-0"><span>Request</span> <i class="icon-angle-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_DoctorAssignModel")
+@section scripts{
+    <script src="~/Scripts/doctorAssign.js"></script>
+    <script>
+    $(document).ready(function(){
+
+
+        $.ajax({
+            url: '@Url.Action("DoctorListPage", "Doctor")',
+		})
+            .done(function (response) {
+                //debugger;
+            $("#partial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+    </script>
+    
+}

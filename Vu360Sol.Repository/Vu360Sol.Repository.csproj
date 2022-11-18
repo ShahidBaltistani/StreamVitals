@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Emails\**" />
+    <EmbeddedResource Remove="Emails\**" />
+    <None Remove="Emails\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Account\yzfcfnf3.oxo~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VU360Sol.Database\VU360Sol.Database.csproj" />
+    <ProjectReference Include="..\VU360Sol.Entities\VU360Sol.Entities.csproj" />
+    <ProjectReference Include="..\Vu360Sol.ViewModel\Vu360Sol.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

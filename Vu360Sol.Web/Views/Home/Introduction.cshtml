@@ -1,0 +1,508 @@
+﻿
+@{
+    ViewBag.Title = "Introduction";
+    Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
+}
+
+<style>
+    #purposeErr {
+        color: #e42c3e;
+    }
+
+    #purposeErr1 {
+        color: #e42c3e;
+    }
+
+    #errmsg1, #errmsg {
+        color: #e42c3e;
+    }
+    .borderclr {
+        border-color: #e42c3e;
+    }
+</style>
+<style>
+    .form-group > label.error {
+        display: block !important;
+        text-transform: none;
+    }
+
+    .form-group input.valid ~ label.error,
+    .form-group input[type="text"] ~ label.error,
+    .form-group input[type="email"] ~ label.error,
+    .form-group input[type="number"] ~ label.error,
+    .form-group select ~ label.error {
+        /*display: none !important;*/
+    }
+
+    .calories-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #contactForm .btn-outline-dark:not(.disabled):not(.active):not(:hover) {
+        color: #444;
+        background-color: #FFF;
+        border-color: #CED4DA;
+    }
+</style>
+
+<section id="slider" class="slider-element include-header min-vh-75 landingsection" style="background: url('/Content/canvas/WebSite Images/Sliders/Slider 1/Hero1.jpg') center;overflow: visible;background-size:cover;min-height: 90vh !important; ">
+    <div class="layer">
+        <div class="slider-inner flex-column justify-content-end">
+            <div class="container py-5 smalltop2" style="z-index: 1;">
+
+                <div class="row align-items-end justify-content-end h-100">
+                    <div class="form-widget col-lg-5 formstart" data-loader="button" style="">
+                        <div class="form-result"></div>
+
+                        <form class="landing-wide-form dark mb-0 mrtops" style="background-color:white !important">
+                            <div class="row">
+                                <div class="col-12 form-group mb-4">
+                                    <div class="heading-block mb-0 border-bottom-0">
+                                        <h2>Let's Get Started!</h2>
+                                        <span style="color:black !important">Please Complete The Form</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="text" id="txtFirstNameIntro1" name="FirstName" class="form-control required form-control-lg not-dark" value="" placeholder="Name">
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="email" id="txtEmailIntro1" name="Email" class="form-control required form-control-lg not-dark" value="" placeholder="Email">
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="text" id="txtPracticeIntro1" name="Practice" class="form-control required form-control-lg not-dark" value="" placeholder="Practice">
+                                </div>
+                                <div class="col-12 form-group">
+
+                                    <input type="text" id="txtPhoneIntro1" name="Phone" class="form-control required form-control-lg not-dark" value="" placeholder="Phone Number">
+                                    <span id="errmsg1"></span>
+                                </div>
+                                <div class="col-12 form-group">
+                                    <div class="error" id="purposeErr1"></div>
+                                </div>
+
+                                <div class="col-12 col-lg-6 form-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input required" option="type1" type="radio" name="realestate-enquiry-from" id="realestate-enquiry-from-dealer" value="3">
+                                        <label class="form-check-label nott ml-2" for="realestate-enquiry-from-dealer" style="font-weight:500!important;color:black !important;">Want To Learn More</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 form-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input required" option="type1" type="radio" name="realestate-enquiry-from" id="realestate-enquiry-from-individual" value="4">
+                                        <label class="form-check-label nott ml-2" for="realestate-enquiry-from-individual" style="font-weight:500!important;color:black !important;">I'm Ready To Get Started</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 form-group mb-0">
+                                    <button id="btnIntroSubmit1" class="btn btn-lg btn-block m-0" value="submit" type="submit" style=" color: #fff !important; background-color: #3c79bc !important; border-color: #3c79bc !important;">Submit</button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="prefix" value="template-landing5-">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-5 position-relative position-lg-absolute smalltop1 mrbottom heightsmall" style="top: auto; bottom: 0;height:500px;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-7">
+                            <h3 class="mrtop" style="color:white !important;font-size:27px;">The Only Predictive Remote Patient Monitoring (RPM) Platform Connecting Patients With Practices. <i class="icon-circle-arrow-right position-relative" style="top:2px;"></i></h3>
+                            <span style="color:white !important;font-size:20px;">StreamVitals Will Drive Practice Revenue While Improving Patient Health.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Content============================================= -->
+<section id="content">
+    <div class="content-wrap" style="padding:35px !important">
+
+        <div class="container clearfix">
+
+            <div class="heading-block topmargin-lg center" style="margin-top:20px !important; margin-bottom:70px !important">
+                <h2>Why StreamVitals</h2>
+            </div>
+
+            <div id="section-features" class="text-justify page-section">
+                <p style="font-size:25px !important">
+                    StreamVitals is a remote patient monitoring platform that provides a seamless way for practices to get reimbursed automatically by medicare while providing patients with access to a digital platform for continual health improvement.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="content" style="background-color: #9e9e9e0a;">
+    <div class="content-wrap" style="padding:35px !important">
+
+        <div class="container clearfix">
+
+            <div class="heading-block topmargin-lg center" style="margin-top:20px !important; margin-bottom:70px !important">
+                <h2>Benefits of Remote Patient Monitoring (RPM)</h2>
+            </div>
+
+            <div id="section-features" class="text-justify page-section">
+                <p style="font-size:20px !important">
+                    <i class="icon icon-ok"></i>
+                    RPM provides an effective way to monitor various physiologic conditions of your patients on a regular basis.
+                </p>
+                <p style="font-size:20px !important">
+                    <i class="icon icon-ok"></i>
+                    The monitoring coupled with regular interactions and coaching of the patients ensures better overall outcome for the patients including better management of chronic conditions, improved health conditions and reduced hospitalization, etc.
+                </p>
+                <p style="font-size:20px !important">
+                    <i class="icon icon-ok"></i>
+                    The system also provides an effective platform for doctors and clinical staff to monitor and guide patients in between office visits.
+                </p>
+                <p style="font-size:20px !important">
+                    <i class="icon icon-ok"></i>
+                    Integrated Tools and Analytics providing doctors and clinical staff the ability to better manage their patient population with tailor-made plans for each individual patient.
+                </p>
+                <p style="font-size:20px !important">
+                    <i class="icon icon-ok"></i>
+                    With CMS bearing most of the cost of the program, this creates a win-win situation for practices as well as the patients.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="heading-block topmargin-lg center" style="margin-top:20px !important;margin-bottom:0px !important">
+        <h2>Join The Other StreamVitals Family Members...</h2>
+    </div>
+    <div id="oc-clients" class="section bg-transparent mt-0 owl-carousel owl-carousel-full image-carousel footer-stick carousel-widget" data-margin="80" data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="4" data-items-xl="5">
+
+        <div class="oc-item" style=" margin-left: 5px;"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-3.jpg" alt="Clients" style="margin-top:25px !important;"></a></div>
+        <div class="oc-item"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-4.jpg" alt="Clients" style="margin-top: 63px;"></a></div>
+        <div class="oc-item"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-2.jpg" alt="Clients" style=" margin-top: 30px;"></a></div>
+        <div class="oc-item"><a href="#"><img src="~/Content/canvas/WebSite Images/About/logo-1.jpg" alt="Clients" style=" height: 200px; width: 275px;"></a></div>
+
+    </div>
+
+</section>
+
+<section id="content" style="background-color: #9e9e9e0a;">
+    <div class="content-wrap" style="padding:35px !important">
+
+        <div class="container clearfix">
+
+            <div class="container">
+
+                <div class="row">
+
+
+                    <div class="form-widget col-lg-12" data-loader="button" style=" ">
+                        <div class="form-result"></div>
+
+                        <form action="" method="post" autocomplete="off" style="background-color: #fbfbfb" class="landing-wide-form dark mb-0">
+                            <div class="row">
+                                <div class="col-12 form-group mb-4">
+                                    <div class="heading-block mb-0 border-bottom-0" style="margin-top:30px;">
+                                        <h2>Let's Get Started!</h2>
+                                        <span style="color:black">Please Complete The Form</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="text" id="txtFirstNameIntro" name="FirstName" class="form-control required form-control-lg not-dark" value="" placeholder="Name">
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="email" id="txtEmailIntro" name="Email" class="form-control required form-control-lg not-dark" value="" placeholder="Email">
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="text" id="txtPracticeIntro" name="Practice" class="form-control required form-control-lg not-dark" value="" placeholder="Practice">
+                                </div>
+                                <div class="col-12 form-group">
+                                    <input type="text" id="txtPhoneIntro" name="Phone" class="form-control required form-control-lg not-dark" value="" placeholder="Phone Number">
+                                    <span id="errmsg"></span>
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <div class="error" id="purposeErr"></div>
+                                </div>
+
+                                <div class="col-12 col-lg-6 form-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input required" option="type" type="radio" name="VisitorPurposeId" id="event-registration-gender-male" value="3">
+                                        <label class="form-check-label nott" for="event-registration-gender-male" style="color:#6c757d !important;font-weight:600 !important;font-size:17px !important;">Want To Learn More</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 form-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input required" option="type" type="radio" name="VisitorPurposeId" id="event-info-gender-female" value="4">
+                                        <label class="form-check-label nott" for="event-registration-gender-female" style="color:#6c757d !important;font-weight:600 !important; font-size:17px !important;">I'm Ready To Get Started</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4  form-group mb-0">
+                                    <button id="btnIntroSubmit" class="btn btn-lg btn-danger btn-block m-0" value="submit" type="submit" style=" color: #fff !important; background-color: #3c79bc !important; border-color: #3c79bc !important;">Submit</button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="prefix" value="template-landing5-">
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#txtPhoneIntro").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhoneIntro").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhoneIntro").addClass("borderclr");
+                    $("#errmsg").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhoneIntro").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhoneIntro").removeClass("borderclr");
+                //hide error message
+                $("#errmsg").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+        });
+
+    </script>
+    <script>
+        $("#btnIntroSubmit").on("click", function () {
+            if (validateIntroForm()) {
+                //debugger;
+                var firstName = $("#txtFirstNameIntro");
+                var email = $("#txtEmailIntro");
+                var practice = $("#txtPracticeIntro");
+                var PhoneContact = $("#txtPhoneIntro");
+                var purpose = $("input[option=type]:checked").val();
+                var data0 = {
+                    FirstName: firstName.val().trim(),
+                    Email: email.val().trim(),
+                    Phone: PhoneContact.val().trim(),
+                    Practice: practice.val().trim(),
+                    VisitorPurposeId: purpose
+
+                };
+                var json = JSON.stringify(data0);
+                $.ajax({
+                    type: 'POST',
+                    url: "/Home/SendVisitorEmailIntro",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: json,
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = "/";
+
+                        } else {
+                            swal("Error", response.responseText, "error").then(
+                                function (okay) {
+                                    if (okay) {
+                                        location.reload(true);
+                                    }
+                                }
+                            );
+
+                        }
+                    },
+                    error: function (response) {
+                    }
+                })
+            }
+        });
+
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+
+        function validateIntroForm() {
+            var firstName = $("#txtFirstNameIntro");
+            var email = $("#txtEmailIntro");
+            var practice = $("#txtPracticeIntro");
+            var PhoneContact = $("#txtPhoneIntro");
+
+            //called when key is pressed in textbox
+            $("#txtPhoneIntro").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhoneIntro").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhoneIntro").addClass("borderclr");
+                    $("#errmsg").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhoneIntro").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhoneIntro").removeClass("borderclr");
+                //hide error message
+                $("#errmsg").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+
+            var purpose = $("input[option=type]:checked").length == 0;
+            if (purpose) {
+                printError("purposeErr", "* Please select at least one option");
+                return false;
+            }
+
+            if (firstName.val().trim() == "" || email.val().trim() == "" || practice.val().trim() == "" || PhoneContact.val().trim() == "") {
+                return false;
+            }
+            else {
+
+                return true;
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#txtPhoneIntro1").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhoneIntro1").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhoneIntro1").addClass("borderclr");
+                    $("#errmsg1").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhoneIntro1").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhoneIntro1").removeClass("borderclr");
+                //hide error message
+                $("#errmsg1").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+        });
+
+    </script>
+    <script>
+        $("#btnIntroSubmit1").on("click", function () {
+            if (validateIntroForm1()) {
+                //debugger;
+                var firstName = $("#txtFirstNameIntro1");
+                var email = $("#txtEmailIntro1");
+                var practice = $("#txtPracticeIntro1");
+                var PhoneContact = $("#txtPhoneIntro1");
+                var purpose = $("input[option=type1]:checked").val();
+                var data0 = {
+                    FirstName: firstName.val().trim(),
+                    Email: email.val().trim(),
+                    Phone: PhoneContact.val().trim(),
+                    Practice: practice.val().trim(),
+                    VisitorPurposeId: purpose
+
+                };
+                var json = JSON.stringify(data0);
+                $.ajax({
+                    type: 'POST',
+                    url: "/Home/SendVisitorEmailIntro",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: json,
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = "/";
+                        } else {
+                            swal("Error", response.responseText, "error").then(
+                                function (okay) {
+                                    if (okay) {
+                                        location.reload(true);
+                                    }
+                                }
+                            );
+
+                        }
+                    },
+                    error: function (response) {
+                    }
+                })
+            }
+        });
+
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+
+        function validateIntroForm1() {
+            var firstName = $("#txtFirstNameIntro1");
+            var email = $("#txtEmailIntro1");
+            var practice = $("#txtPracticeIntro1");
+            var PhoneContact = $("#txtPhoneIntro1");
+
+            $("#txtPhoneIntro1").focusout(function (e) {
+                //debugger;
+                var value = $("#txtPhoneIntro1").val();
+                //if the letter is not digit then display error and don't type anything
+                if (value.trim() != "" && value.match(/^[0-9-]*$/) == null) {
+                    //display error message
+
+                    $("#txtPhoneIntro1").addClass("borderclr");
+                    $("#errmsg1").html("Only digits are valid in this field.").show();
+                    return false;
+                }
+            });
+            $("#txtPhoneIntro1").focusin(function (e) {
+                //debugger;
+
+                $("#txtPhoneIntro1").removeClass("borderclr");
+                //hide error message
+                $("#errmsg1").html("Only digits are valid in this field.").hide();
+                return false;
+
+            });
+
+
+            var purpose = $("input[option=type1]:checked").length == 0;
+            if (purpose) {
+                printError("purposeErr1", "* Please select at least one option");
+                return false;
+            }
+            if (firstName.val().trim() == "" || email.val().trim() == "" || practice.val().trim() == "" || PhoneContact.val().trim() == "") {
+                return false;
+            }
+            else {
+
+                return true;
+            }
+        }
+    </script>
+
+}

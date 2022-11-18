@@ -1,0 +1,261 @@
+﻿@{
+    ViewBag.Title = "CreateDoctor";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+<style>
+    #errmsg {
+        color: red;
+    }
+</style>
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+            <form class="mb-0" id="template-contactform" name="template-contactform" action="CreateDoctor" method="post" enctype="multipart/form-data" autocomplete="off">
+                <div class="row gutter-40 col-mb-80">
+                    <div class="col-lg-1"></div>
+                    <div class="postcontent col-lg-7">
+                        <h3>Doctor</h3>
+                        <div class="form-widget">
+                            <div class="form-result"></div>
+                            <div class="form-process">
+                                <div class="css3-spinner">
+                                    <div class="css3-spinner-scaler"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label for="template-contactform-name">First Name <small>*</small></label>
+                                    <input placeholder="Firstname" type="text" id="template-contactform-Firstname" name="User.FirstName" value="" class="sm-form-control required" required />
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label for="template-contactform-name">Last Name <small>*</small></label>
+                                    <input placeholder="Lastname" type="text" id="template-contactform-Lastname" name="User.LastName" value="" class="sm-form-control required" required />
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-email" id="lblUserEmail">
+                                        Email <small>*</small>
+                                    </label>
+                                    <input placeholder="Email" type="email" id="template-contactform-email" name="User.Email" value="" class="required email sm-form-control" onblur="return chkblnk('template-contactform-email','errorUserEmail','lblUserEmail')" required />
+                                    <span id="errorUserEmail" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label for="template-contactform-phone">Phone <span id="errmsg"></span></label>
+                                    <input placeholder="Phone" type="text" id="template-contactform-phone" name="User.PhoneNumber" value="" class="sm-form-control" required />
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label for="template-contactform-phone">Location Name</label>
+                                    <input placeholder="Location Name" type="text" id="template-contactform-LocationName" name="LocationName" value="" class="sm-form-control" required />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputState">Provider Type</label>
+                                    <input placeholder="Provider Type" type="text" id="template-contactform-ProviderType" name="ProviderType" value="" class="sm-form-control" required />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="PracticeDD">Practice</label>
+                                    <select id="practiceDD" class="form-control" name="PracticeId" required>
+                                    </select>
+                                    <label id="dd-required"></label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="template-contactform-PracticeAddress">Location Address</label>
+                                    <input placeholder="Location Address" type="text" id="template-contactform-LocationAddress" name="LocationAddress" value="" class="sm-form-control" required/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="template-contactform-NPI">NPI</label>
+                                    <input placeholder="NPI" type="text" id="template-contactform-NPI" name="NPI" value="" class="sm-form-control" required/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="template-contactform-LocationState">Location State</label>
+                                    <input placeholder="Location State" type="text" id="template-contactform-LocationState" name="LocationState" value="" class="sm-form-control" required/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="template-contactform-WebsiteURL">Website URL</label>
+                                    <input placeholder="Website URL" type="text" id="template-contactform-WebsiteURL" name="WebsiteURL" value="" class="sm-form-control" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="template-contactform-gender">Gender</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="User.GenderId" id="exampleRadios1" value="1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Male
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="User.GenderId" id="exampleRadios2" value="2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 ml-0">
+                                    <div class="btn-group btn-group-lg mb-2 right" role="group" aria-label="Large Size" style="float:right;margin-top:90px;">
+                                        <a type="button" href="/Doctor/DoctorList" class="btn btn-secondary">Back</a>
+                                        @*<button type="button" class="btn btn-secondary">Middle</button>*@
+                                        <button type="submit" class="btn btn-secondary">Save</button>
+                                    </div>
+                                    @*<button type="submit" style="float:right;margin-top: 46px !important;" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Save</span> <i class="icon-angle-right"></i></button>*@
+                                </div>
+                            </div>
+                            @*<a href="/Doctor/DoctorList" class="button button-border button-white button-light button-large text-right"><span><i class="icon-angle-left"></i>Back</span></a>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="template-contactform-name" style="margin-top: 68px;">Image</label>
+                        <img id="blah" src="~/Content/canvas/images/extras/200x200.gif" alt="your image" style="margin-bottom:20px;width: 293px; height: 239px;" />
+                        <input type='file' name="file" onchange="readURL(this);" />
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        debugger
+        $.ajax({
+            type: "GET",
+            url: "/Practice/GetAllPractice",
+            dataType: "json",
+            success: function (result) {
+                $('#practiceDD').html('');
+                var rows1 = "<option value='' selected disabled > --select Practice--</option >";
+                $('#practiceDD').append(rows1);
+
+                $.each(result, function (i, item) {
+                    var rows;
+                    rows = "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                    $('#practiceDD').append(rows);
+                });
+            }
+        });
+    });
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        $("#template-contactform-phone").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && String.fromCharCode(e.which) != '-' && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+
+</script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(293)
+                    .height(250);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+
+</script>
+<script>
+    function chkblnk(eid, errid, label) {
+        var x = document.getElementById(eid).value;
+        var lbl = document.getElementById(label).innerText.toLowerCase();
+        if (x == "") {
+            document.getElementById(errid).innerHTML = lbl + " required";
+        }
+        else if (eid == "template-contactform-email") {
+            if (chkeid()) {
+                var response = UserNameValidate(x);
+                if (response.status == 200) {
+                    document.getElementById(errid).innerHTML = "";
+                }
+                else if (response.responseText.toLowerCase().indexOf('already exist') !== -1) {
+                    document.getElementById(eid).value = "";
+                    document.getElementById(errid).innerHTML = "'" + x + "' Already Exist";
+                }
+            }
+        }
+        else {
+            document.getElementById(errid).innerHTML = "";
+        }
+    }
+    function chkeid() {
+        var mailformat = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/
+        var e = document.getElementById("template-contactform-email").value;
+        var atpos = e.indexOf("@@");
+        var dotpos = e.lastIndexOf(".");
+        if (e != "" && !e.match(mailformat)) {
+            document.getElementById("errorUserEmail").innerHTML = "invalid email";
+            return false;
+        }
+        else {
+            document.getElementById("errorUserEmail").innerHTML = "";
+            return true;
+        }
+    }
+    function UserNameValidate(value) {
+        var response = $.ajax({
+            type: 'POST',
+            url: "/Registration/UserNameExsist",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            data: JSON.stringify({ 'Email': value }),
+            success: function (response) {
+                if (response.success) {
+                } else {
+                }
+            },
+            error: function (response) {
+            }
+        });
+        return response;
+    }
+
+    $("#template-contactform-phone").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && String.fromCharCode(e.which) != '-' && (e.which < 48 || e.which > 57)) {
+            //display error message
+            $("#errmsg").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+</script>
+@*<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/doctor/SpecialityList",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $('#inputState').html('');
+                    var rows1 = "<option value='' selected disabled > --select Speciality--</option >";
+                    $('#inputState').append(rows1);
+
+                    $.each(result, function (i, item) {
+                        var rows;
+                        rows = "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        $('#inputState').append(rows);
+                    });
+                }
+            });
+        });
+    </script>*@

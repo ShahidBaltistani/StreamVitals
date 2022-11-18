@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&amp;display=swap" rel="stylesheet" type="text/css" />
+    <link href="~/Content/canvas/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/canvas/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/dark2.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/canvas/css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/canvas/css/custom.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/canvas/include/rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/canvas/include/rs-plugin/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/canvas/include/rs-plugin/css/navigation.css">
+
+    <link href="~/Search-Through-Text-Finder/style.css" rel="stylesheet" />
+
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link href="~/Content/cp/clockpicker.css" rel="stylesheet" />
+    <link href="~/Content/cp/standalone.css" rel="stylesheet" />
+    <link href="~/Content/calender/jquery-ui-for-open-calender.css" rel="stylesheet" />
+    <!-- Document Title============================================= -->
+
+
+
+    @Html.Partial("_GoogleAnalytics")
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/canvas/WebSite Images/logo-02 small.png" style="width:100%;">
+
+    <style>
+
+        .revo-slider-emphasis-text {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            font-family: 'Poppins', sans-serif;
+            padding: 15px 20px;
+            border-top: 2px solid #FFF;
+            border-bottom: 2px solid #FFF;
+        }
+
+        .revo-slider-desc-text {
+            font-size: 20px;
+            font-family: 'Lato', sans-serif;
+            width: 650px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .revo-slider-caps-text {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tp-video-play-button {
+            display: none !important;
+        }
+
+        .tp-caption {
+            white-space: nowrap;
+        }
+
+        .layer {
+            background-color: #379cc8bd;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+
+
+</head>
+<body class="stretched">
+    <div id="wrapper" class="clearfix">
+
+        <!-- Header============================================= -->
+        <header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+            <div id="header-wrap" style="background:white !important;">
+                <div class="container">
+                    <div class="header-row">
+
+                        <!-- Logo============================================= -->
+                        <div id="logo" style=" margin: 23px;">
+                            <a href="@Url.Action("Index", "Home")" class="standard-logo" data-dark-logo="/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;"><img src="~/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;" alt="StreamVitals"></a>
+                            <a href="#" class="retina-logo" data-dark-logo="/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;"><img src="~/Content/canvas/WebSite Images/logo-02.png" style="height: 45px ;" alt="StreamVitals"></a>
+
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!-- #header end -->
+
+
+        <div class="app" data-finder-wrapper data-finder-scroll-offset="100">
+            <div class="content" data-finder-content>
+                @RenderBody()
+            </div>
+        </div>
+
+        <div id="copyrights" style="background-color: #3c79bc;color:white !important">
+            <div class="container">
+
+                <div class="row justify-content-between col-mb-30">
+                    <div class="col-md-12 col-lg-12 text-center">
+
+                        Copyrights &copy; 2020 All Rights Reserved by StreamVitals.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Go To Top============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts============================================= -->
+    <script src="~/Content/canvas/js/jquery.js"></script>
+    <script src="~/Content/canvas/js/plugins.min.js"></script>
+
+    <!-- Footer Scripts============================================= -->
+    <script src="~/Content/canvas/js/functions.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+    <script src="~/Content/canvas/include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="~/Content/canvas/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="~/Search-Through-Text-Finder/jquery.scrollto.js"></script>
+    <script src="~/Search-Through-Text-Finder/jquery.finder.js"></script>
+    <script src="~/Search-Through-Text-Finder/jquery.highlight.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="~/Content/cp/clockpicker.js"></script>
+    <script src="~/Content/calender/jfoc.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script>
+        var tpj = jQuery;
+        tpj.noConflict();
+        var $ = jQuery.noConflict();
+
+
+        tpj(document).ready(function () {
+            var apiRevoSlider = tpj('#rev_slider_k_fullwidth').show().revolution(
+                {
+                    sliderType: "standard",
+                    sliderLayout: "fullwidth",
+                    delay: 9000,
+                    navigation: {
+                        arrows: { enable: true }
+                    },
+                    responsiveLevels: [1240, 1024, 778, 480],
+                    visibilityLevels: [1240, 1024, 778, 480],
+                    gridwidth: [1240, 1024, 778, 480],
+                    gridheight: [600, 768, 960, 720],
+                });
+
+            apiRevoSlider.on("revolution.slide.onloaded", function (e) {
+                setTimeout(function () { SEMICOLON.slider.sliderDimensions(); }, 400);
+            });
+
+            apiRevoSlider.on("revolution.slide.onchange", function (e, data) {
+                SEMICOLON.slider.revolutionSliderMenu();
+            });
+        });
+    </script>
+
+
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/8939327.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+</body>
+</html>
+

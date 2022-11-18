@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+@*<script src="~/Content/canvas/js/jquery.js"></script>*@
+
+<style>
+    .popover.clockpicker-popover {
+        z-index: 1050;
+    }
+
+    .fc-toolbar h2 {
+        color: #1c79bd;
+    }
+</style>
+<style>
+    .test:after {
+        content: '\2807';
+        font-size: 30px;
+    }
+</style>
+
+
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix" style="max-width: 1490px !important">
+            <div class="">
+                <h1 class="text-center">Assigned Doctors</h1>
+            </div>
+            <div class="row gutter-40 col-mb-80">
+                <div class="postcontent col-lg-12">
+                   <div id="partialGetBySalePerson" style="max-width:100% !important"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </section>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#2f6295;color:white;display:initial !important;">
+                <h5 class="modal-title text-center" style="font-size:1.775rem !important;color:white !important;">
+                    Request-Demo
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" class="RequestDemoForm">
+                    
+                    <input type="hidden" id="hfDocId" name="DoctorId" />
+                    <input type="hidden" id="hfIsUserRegisterdModal" name="Doctor.User.IsActive" />
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">First Name <small>*</small></label>
+                            <input type="text" id="modalFirstName" name="FirstName" class="form-control required" value="" placeholder="Enter First Name" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">Last Name <small>*</small></label>
+                            <input type="text" id="modalLastName" name="LastName" value="" class="sm-form-control" required placeholder="Enter Last Name" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-email">Email <small>*</small></label>
+                            <input type="email" id="modalEmail" name="Email" value="" class="form-control required" required placeholder="Enter Email" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-phone">Phone</label>
+                            <input type="text" id="modalPhone" name="Phone" value="" class="sm-form-control" placeholder="Enter Phone" />
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-phone">Location</label>
+                            <input type="text" id="modalLocation" name="Location" value="" class="sm-form-control" placeholder="Enter Location" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Date</label>
+                            <input type="date" id="modalDate" name="Date" value="" class="sm-form-control" required placeholder="Select Date" />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Time</label>
+                            <input type="text" id="modalTime" name="Time" class="sm-form-control clockpicker" required placeholder="Select Time" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="button"  style="float:right;" class="btnRequestDemo button button-border button-white button-light button-large button-rounded text-right m-0"><span>Request</span> <i class="icon-angle-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_DoctorAssignModel")
+@section scripts {
+    <script src="~/Scripts/doctorAssign.js"></script>
+    
+
+    <script>
+
+    $(document).ready(function(){
+    
+        $.ajax({
+			url: '@Url.Action("GetBySalePersonIdPage", "DoctorAssign")',
+		})
+            .done(function (response) {
+                debugger;
+                $("#partialGetBySalePerson").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        //	alert("FAIL");
+        });
+    });
+
+    </script>
+}

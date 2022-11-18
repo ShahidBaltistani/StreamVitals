@@ -1,0 +1,54 @@
+﻿<div class="modal fade bs-example-modal-lg" id="assignModel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#2f6295 !important">
+                    <h4 class="modal-title" id="myModalLabel" style="color: white !important;">Assign to SalePerson</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="saveNote" style="margin-bottom:0px !important;">
+                        
+                        <div class="row">
+                            <input type="text" hidden name="DoctorId" id="drID" />
+                            <div class="col-12 form-group">
+                                <label>*Notes:</label>
+                                <textarea name="Note.Discription" id="assign-note" class="form-control" cols="30" rows="6" required></textarea>
+                                <label id="note-required"></label>
+                                <span id="errorSummery" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="salePersonDD">Assign to sale person</label>
+                                <select id="salePersonDD" class="form-control" name="SalePersonId" required>
+                                </select>
+                                <label id="dd-required"></label>
+
+                            </div>
+                            <div class="col-4 offset-2  form-group" style="margin-top:23px">
+                                <a href="#" id="noteSave" onclick="saveNote()" style="float:left;padding:8px !important;" class="button button-border button-white button-light button-large button-rounded text-right "><span>Save</span></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <table class="table">
+                        <thead style="background-color:#1abc9c !important; color:white !important;">
+                            <tr>
+                                <th>Notes</th>
+                                <th>Date</th>
+                                @*<th>Doctor</th>*@
+                                <th>SalePerson</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="AssignNotesTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

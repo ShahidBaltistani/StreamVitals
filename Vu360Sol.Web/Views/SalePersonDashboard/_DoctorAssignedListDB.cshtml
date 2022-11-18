@@ -1,0 +1,559 @@
+﻿@model Vu360Sol.ViewModel.SharedViewModels.DoctorAssignedPaginationModel
+<div class="jumbotron" style="background-color: #f9f9f9c7 !important;height: 735px;position: relative;">
+    <h4>Doctor Assigned List</h4>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input class="form-control" id="searchInputDoctorAssignedList" type="text" value="@Model.SearchTerm" placeholder="Search by First Name ,Last Name and Email" style="margin-bottom: 10px;">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <select id="daysDoctorAssignedList" name="daysApproval" class="form-control">
+                <option value="1" selected>Today</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+            </select>
+        </div>
+    </div>
+    <style>
+        .popover.clockpicker-popover {
+            z-index: 1050;
+        }
+
+        .fc-toolbar h2 {
+            color: #1c79bd;
+        }
+    </style>
+    <style>
+        .test:after {
+            content: '\2807';
+            font-size: 30px;
+        }
+    </style>
+    <div class="table-responsive" id="divList">
+        <table class="table" id="content">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @if (@Model.doctorsAssigned == null || (@Model.doctorsAssigned != null && @Model.doctorsAssigned.Count() == 0))
+                {
+                    <tr>
+                        <td colspan="5" style="text-align:center;font-size:20px;font-weight:bold;">
+                            No Assign Doctor...
+                        </td>
+                    </tr>
+                }
+                else
+                {
+
+                    foreach (var item in @Model.doctorsAssigned)
+                    {
+                        <tr id="contentrow">
+                            <td>
+                                @if (item.Doctor.ImagePath == null)
+                                {
+                                    <img src="~/Content/canvas/WebSite Images/fuser.png" style="width:50px;height:50px;border-radius:25px;" />
+                                }
+                                else
+                                {
+                                    <img src="~/UploadedFiles/@item.Doctor.ImagePath" style="width:50px;height:50px;border-radius:25px;" />
+                                }
+                                <input type="hidden" id="hfId" value="@item.Doctor.Id" />
+                                <input type="hidden" id="hfIsUserRegisterd" value="@item.Doctor.User.IsActive.ToString()" />
+                            </td>
+                            <td id="FirstName">
+                                @item.Doctor.User.FirstName
+
+                            </td>
+                            <td id="LastName">
+                                @item.Doctor.User.LastName
+
+                            </td>
+                            <td id="Email">@item.Doctor.User.Email</td>
+                            <td>
+                                <ul class="navbar-nav mx-auto absolute-right  ">
+                                    <li class="nav-item dropdown">
+
+                                        <a class="" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon icon-list"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdown05" style="min-width: 14rem !important;left:-41px !important">
+                                            <a href="#" onclick="DrAssignDetail(@item.Doctor.Id)" style="text-decoration: none; padding: 6px">
+                                                <i class="icon icon-eye"></i>
+                                                Detail
+                                            </a>
+                                            <br />
+                                            <a href="#" onclick="ContectedDoctorAssignNotesDB(@item.Doctor.Id)" style="text-decoration: none; padding: 6px">
+                                                <i class="icon icon-call"></i>
+                                                Call
+                                            </a>
+                                            <br />
+                                            <a href="#" class="btnRegister" style="text-decoration: none;padding:4px">
+                                                <i class="icon icon-user"></i>
+                                                Set Appointment
+                                            </a>
+                                            <br />
+
+                                            @if (!item.Doctor.User.IsActive)
+                                            {
+                                                <a href="#" class="btnSendEmail" style="text-decoration: none; padding: 6px">
+                                                    <i class="icon icon-mail"></i>
+                                                    Registration Email
+                                                </a>
+                                                <br />
+                                            }
+
+                                            <br />
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="row" style="position: absolute; bottom: 20px !important;width: 95%;">
+        <div class="col-lg-12">
+            <ul class="pagination pagination-rounded mt-5">
+                @if (@Model.page != null && @Model.page.TotalPages > 1)
+                {
+
+                    if (@Model.page.CurrentPage > 1)
+                    {
+                        <li class="page-item" title="First">
+                            <a class="pageBtn page-link" data-pageno="1"><i class="icon-line-chevrons-left"></i></a>
+                        </li>
+
+                        <li class="page-item" title="Previous">
+                            <a class="pageBtn page-link" data-pageno="@(@Model.page.CurrentPage - 1)"><i class="icon-line-chevron-left"></i></a>
+                        </li>
+                    }
+                    for (var page = @Model.page.StartPage; page <= @Model.page.EndPage; page++)
+                    {
+                        string activeClass = @Model.page.CurrentPage == page ? "active" : string.Empty;
+
+                        <li class="page-item @activeClass">
+                            <a class="pageBtn page-link" data-pageno="@page">@page</a>
+
+                        </li>
+                    }
+                    if (@Model.page.CurrentPage < @Model.page.TotalPages)
+                    {
+                        <li class="page-item" title="Next">
+                            <a class="pageBtn page-link" data-pageno="@(@Model.page.CurrentPage + 1)"><i class="icon-line-chevron-right"></i></a>
+                        </li>
+                        <li class="page-item" title="Last">
+                            <a class="pageBtn page-link" data-pageno="@Model.page.TotalPages"><i class="icon-line-chevrons-right"></i></a>
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="row" style=" margin-top: 20px;">
+
+                <div class="col-md-12" style=" text-align: center;">
+                    <a href="/DoctorAssign/GetBySalePersonId" class="btn btn-primary" style="background-color:#1abc9c;">View All</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#2f6295;color:white;display:initial !important;">
+                <h5 class="modal-title text-center" style="font-size:1.775rem !important;color:white !important;">
+                    Request-Demo
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" @*id="RequestDemoForm"*@ class="RequestDemoForm">
+                    @*action="/Doctor/Schedule" method="post"*@
+                    <input type="hidden" id="hfDocId" name="DoctorId" />
+                    <input type="hidden" id="hfIsUserRegisterdModal" name="Doctor.User.IsActive" />
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">First Name <small>*</small></label>
+                            <input type="text" id="modalFirstName" name="FirstName" class="form-control required" value="" placeholder="Enter First Name" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-name">Last Name <small>*</small></label>
+                            <input type="text" id="modalLastName" name="LastName" value="" class="sm-form-control" required placeholder="Enter Last Name" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-email">Email <small>*</small></label>
+                            <input type="email" id="modalEmail" name="Email" value="" class="form-control required" required placeholder="Enter Email" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-phone">Phone</label>
+                            <input type="text" id="modalPhone" name="Phone" value="" class="sm-form-control" placeholder="Enter Phone" />
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="template-contactform-phone">Location</label>
+                            <input type="text" id="modalLocation" name="Location" value="" class="sm-form-control" placeholder="Enter Location" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Date</label>
+                            <input type="date" id="modalDate" name="Date" value="" class="sm-form-control" required placeholder="Select Date" />
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="template-contactform-phone">Time</label>
+                            <input type="text" id="modalTime" name="Time" class="sm-form-control clockpicker" required placeholder="Select Time" />
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="button" @*id="btnRequestDemo"*@ style="float:right;" class="btnRequestDemo button button-border button-white button-light button-large button-rounded text-right m-0"><span>Request</span> <i class="icon-angle-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+        @Html.Partial("_AddNotesDoctorAssignListModel")
+        <script>
+        $(".pageBtn").click(function () {
+            debugger
+        var data= {
+				PageNo: $(this).attr("data-pageNo"),
+                Search: '@Model.SearchTerm',
+                Days: $("#daysDoctorAssignedList").val()
+
+        }
+        SendRequestDoctorAssignList(data);
+	});
+        $('#searchInputDoctorAssignedList').on('input', function (e) {
+            debugger
+        var data = {
+            Search: $('#searchInputDoctorAssignedList').val(),
+            Days: $("#daysDoctorAssignedList").val()
+        };
+        SendRequestDoctorAssignList(data);
+    });
+
+
+
+        function SendRequestDoctorAssignList(data) {
+            debugger
+        	$.ajax({
+			url: '@Url.Action("DoctorAssignedList", "SalePersonDashboard")',
+			data:data
+		})
+                .done(function (response) {
+                    var DDvalue = $('#daysDoctorAssignedList').val();
+                    $("#assignDoctorsPartial").html(response);
+                    var search = $("#searchInputDoctorAssignedList");
+                    $("#daysDoctorAssignedList").val(DDvalue);
+                //search.focus();
+                var strLength = search.val().length * 2;
+                search[0].setSelectionRange(strLength, strLength);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	//alert("FAIL");
+        });
+    };
+
+        </script>
+        <script>
+            $("#daysDoctorAssignedList").change(function () {
+                debugger
+                var data = {
+                    Days: $('#daysDoctorAssignedList').val()
+                };
+                SendRequestDoctorAssignList(data);
+
+            })
+        </script>
+
+
+        <script>
+           
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/SalePerson/SalePersonDropDown",
+                    dataType: "json",
+                    success: function (result) {
+                        $('#salePersonDD').html('');
+                        var rows1 = "<option value='' selected disabled > --select SalePerson--</option >";
+                        $('#salePersonDD').append(rows1);
+
+                        $.each(result, function (i, item) {
+                            var rows;
+                            rows = "<option value='" + item.Id + "'>" + item.User.FullName + "</option>";
+                            $('#salePersonDD').append(rows);
+                        });
+                    }
+                });
+            });
+
+            var saveDrAssignNote = function () {
+                debugger
+                if (!RequiredField()) {
+                    $('#errorSummery').show();
+                    $('#errorSummery').text("Please fill Notes field").fadeOut(5000);
+                    return false;
+                }
+                else {
+                    debugger
+                    //$("#assignModel").modal("hide");
+
+                    $.ajax({
+
+                        type: "GET",
+                        url: "/DoctorAssign/Create",
+                        data: $("#saveNote").serialize(),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            debugger
+                            $('#assign-note').val('');
+                            $('#salePersonDD').val('');
+                            var id = $('#drID').val();
+                            AssignNotes(id);
+                            //Swal.fire(
+                            //    'Success',
+                            //    'Assigned Sucessfully',
+                            //    'success'
+                            //)
+
+                        }
+                    });
+
+                }
+            }
+            function RequiredField() {
+                debugger
+                //var data = $("#salePersonDD").val();
+                var data2 = $("#assign-note").val();
+                //var x = document.getElementById("assign-note").required;
+                if (data2 != "") {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        </script>
+
+
+        <script>
+
+            $(function () {
+                $(".btnRegister").on("click", function () {
+                    ////debugger;
+                    var FirstName = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#FirstName")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var LastName = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#LastName")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var Email = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#Email")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var Phone = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#Phone")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var Location = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#Location")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var DoctorId = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#hfId")     // Gets a descendent with class="nr"
+                        .val().trim();
+                    var IsUserRegisterd = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#hfIsUserRegisterd")     // Gets a descendent with class="nr"
+                        .val();
+
+
+                    $("#modalFirstName").val(FirstName);
+                    $("#modalLastName").val(LastName);
+                    $("#modalEmail").val(Email);
+                    $("#modalPhone").val(Phone);
+                    $("#modalLocation").val(Location);
+                    $("#hfDocId").val(DoctorId);
+                    $("#hfIsUserRegisterdModal").val(IsUserRegisterd);
+                    $("#myModal").modal('show');
+                });
+                $(".btnSendEmail").on("click", function () {
+                    ////debugger;
+                    var FirstName = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#FirstName")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var LastName = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#LastName")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var Email = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#Email")     // Gets a descendent with class="nr"
+                        .text().trim();
+                    var id = $(this).closest("tr")   // Finds the closest row <tr>
+                        .find("#hfId")     // Gets a descendent with class="nr"
+                        .val().trim();
+                    var doc = {};
+                    doc.Id = id;
+                    doc.User = {};
+                    doc.User.FirstName = FirstName;
+                    doc.User.LastName = LastName;
+                    doc.User.Email = Email;
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Doctor/SendRegistrationEmail",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(doc),
+                        success: function (response) {
+                            if (response.success) {
+                                swal({
+                                    title: "Success!",
+                                    text: response.responseText,
+                                    type: "success"
+                                }).then(
+                                    function (okay) {
+                                        if (okay) {
+                                            //   location.reload(true);
+                                            // window.location.href = "/Registration/Login1";
+                                        }
+                                    }
+                                );
+
+                            } else {
+                                swal("Error", response.responseText, "error").then(
+                                    function (okay) {
+                                        if (okay) {
+                                            // location.reload(true);
+                                        }
+                                    }
+                                );
+
+                            }
+                        },
+                        error: function (response) {
+                        }
+                    });
+                    //var FirstName = $(this).closest("tr")   // Finds the closest row <tr>
+                    //    .find("#FirstName")     // Gets a descendent with class="nr"
+                    //    .text().trim();
+                    //var LastName = $(this).closest("tr")   // Finds the closest row <tr>
+                    //    .find("#LastName")     // Gets a descendent with class="nr"
+                    //    .text().trim();
+                    //var Email = $(this).closest("tr")   // Finds the closest row <tr>
+                    //    .find("#Email")     // Gets a descendent with class="nr"
+                    //    .text().trim();
+                    //var Phone = $(this).closest("tr")   // Finds the closest row <tr>
+                    //    .find("#Phone")     // Gets a descendent with class="nr"
+                    //    .text().trim();
+                    //var Location = $(this).closest("tr")   // Finds the closest row <tr>
+                    //    .find("#Location")     // Gets a descendent with class="nr"
+                    //    .text().trim();
+
+                    //$("#modalFirstName").val(FirstName);
+                    //$("#modalLastName").val(LastName);
+                    //$("#modalEmail").val(Email);
+                    //$("#modalPhone").val(Phone);
+                    //$("#modalLocation").val(Location);
+                    //$("#myModal").modal('show');
+                });
+                $('#modalDate').datepicker({
+                    onClose: function (dateText, inst) {
+                        $(this).attr("disabled", false);
+                    },
+                    beforeShow: function (input, inst) {
+                        $(this).attr("disabled", true);
+                    },
+                    // beforeShowDay: noSundaysOrHolidays,
+                    //  minDate: 1,
+                    //   maxDate: '7d',
+                    changeYear: true,
+                    changeMonth: true,
+                    // dateFormat: "yy-m-dd",
+                    // yearRange: "-100:+20",
+                    minDate: '0',
+                    dateFormat: 'yy-mm-dd',
+                    defaultDate: new Date(),
+                });
+                $('.clockpicker').clockpicker({
+                    placement: 'top',
+                    twelvehour: true,
+                    autoclose: false,
+                    donetext: 'Done',
+                });
+                $(".btnRequestDemo").on("click", function () {
+                    if (validateForm()) {
+                        //debugger;
+                        //var $form = $('contactLayoutForm');
+                        $.ajax({
+                            type: 'POST',
+                            url: "/Doctor/Schedule",
+                            dataType: "json",
+                            data: $(".RequestDemoForm").serialize(),
+                            success: function (response) {
+                                if (response.success) {
+                                    swal({
+                                        title: "Success!",
+                                        text: response.responseText,
+                                        type: "success"
+                                    }).then(
+                                        function (okay) {
+                                            if (okay) {
+                                                location.reload(true);
+                                                // window.location.href = "/Registration/Login1";
+                                            }
+                                        }
+                                    );
+
+                                } else {
+                                    swal("Error", response.responseText, "error").then(
+                                        function (okay) {
+                                            if (okay) {
+                                                location.reload(true);
+                                            }
+                                        }
+                                    );
+
+                                }
+                            },
+                            error: function (response) {
+                            }
+                        })
+                    }
+                });
+
+                function validateForm() {
+                    ////debugger;
+                    //var firstName = $("#modalFirstName");
+                    //var lastName = $("#modalLastName");
+                    //var email = $("#modalEmail");
+                    //var Location = $("#modalLocation");
+                    //var Date = $("#modalDate");
+                    //var Time = $("#modalTime");
+
+                    if ($("#modalFirstName").val().trim() == "" || $("#modalLastName").val().trim() == "" || $("#modalEmail").val().trim() == "" || $("#modalLocation").val().trim() == "" || $("#modalDate").val().trim() == "" || $("#modalTime").val().trim() == "") {
+                        //swal("Error", "Please fill required field", "error");
+                        return false;
+                    }
+                    else {
+
+                        return true;
+                    }
+                }
+            });
+
+        </script>

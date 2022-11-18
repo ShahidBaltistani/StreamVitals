@@ -1,0 +1,482 @@
+﻿@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+<style>
+    #errmsg {
+        color: #e42c3e;
+    }
+</style>
+<style>
+    .form-group > label.error {
+        display: block !important;
+        text-transform: none;
+    }
+
+.form-group input.valid ~ label.error,
+.form-group input[type="text"] ~ label.error,
+.form-group input[type="email"] ~ label.error,
+.form-group input[type="number"] ~ label.error,
+.form-group input[type="password"] ~ label.error,
+.form-group select ~ label.error { 
+    /*display: none !important;*/
+
+}
+
+    .calories-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #contactForm .btn-outline-dark:not(.disabled):not(.active):not(:hover) {
+        color: #444;
+        background-color: #FFF;
+        border-color: #CED4DA;
+    }
+</style>
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+
+            <div class="tabs mx-auto mb-0 clearfix" id="tab-login-register" style="max-width: 500px;">
+
+                <ul class="tab-nav tab-nav2 center clearfix">
+                    <li class="inline-block"><a href="#tab-login">Login</a></li>
+                    <li class="inline-block"><a id="btnRegisterTab" href="#tab-register">Register</a></li>
+                </ul>
+
+                <div class="tab-container">
+
+                    <div class="tab-content" id="tab-login">
+                        <div class="card mb-0">
+                            <div class="card-body" style="padding: 40px;">
+                                <form id="login-form" name="login-form" class="mb-0" action="#" method="post" autocomplete="off">
+
+                                    <h3>Login to your Account</h3>
+
+                                    <div class="row">
+                                        <div class="col-12 form-group">
+                                            <label for="login-form-username" id="lblUserName">User-Email</label>
+                                            <input type="email" id="login-form-username" name="Email" value="" class="form-control required" onblur="return chkblnkLogin('login-form-username','errorUserNameLogin','lblUserName')" />
+                                            <span id="errorUserNameLogin" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="col-12 form-group">
+                                            <label for="login-form-password" id="lblPassword">Password</label>
+                                            <input type="password" id="login-form-password" name="Password" value="" class="form-control required" onblur="return chkblnkLogin('login-form-password','errorPasswordLogin','lblPassword')" />
+                                            <span id="errorPasswordLogin" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="col-12 form-group">
+                                            <button id="btnLoginSubmit" type="button" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Login</span> <i class="icon-angle-right"></i></button>
+                                        </div>
+                                        
+                                        <div class="col-12 form-group">
+                                            <a  href="/Registration/ForgotPassword">Forgot Password</a>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-register">
+                        <div class="card mb-0">
+                            <div class="card-body" style="padding: 40px;">
+                                <h3>Register for an Account</h3>
+
+                                <form id="register-form" name="register-form" class="row mb-0" action="#" novalidate autocomplete="off">
+                                    @Html.AntiForgeryToken()
+                                    <span id="errorSummery" class="text-danger"></span>
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-FirstName" id="lblUserRegisterFirstName">First Name</label> <span style="color:red">*</span>
+                                        <input type="text" id="register-form-FirstName" name="User.FirstName" value="@(Model.User != null ? Model.User.FirstName : string.Empty)" class="form-control required" onblur="return chkblnk('register-form-FirstName','errorUserRegisterFirstName','lblUserRegisterFirstName')" />
+                                        <span id="errorUserRegisterFirstName" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-LastName" id="lblUserRegisterLastName">Last Name</label> <span style="color:red">*</span>
+                                        <input type="text" id="register-form-LastName" name="User.LastName" value="@(Model.User != null ? Model.User.LastName : string.Empty)" class="form-control" onblur="return chkblnk('register-form-LastName','errorUserRegisterLastName','lblUserRegisterLastName')" />
+                                        <span id="errorUserRegisterLastName" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-Email" id="lblUserRegisterEmail">Email</label> <span style="color:red">*</span>
+                                        <input type="email" id="register-form-Email" name="User.Email" value="@(Model.User  != null ? Model.User.Email : string.Empty)" class="form-control" onblur="return chkblnk('register-form-Email','errorUserRegisterEmail','lblUserRegisterEmail')" />
+                                        <span id="errorUserRegisterEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-Phone" id="lblUserRegisterPhone">Phone <span id="errmsg"></span></label>
+                                        <input type="text" id="register-form-Phone" name="User.PhoneNumber" value="@(Model.User != null ? Model.User.PhoneNumber : string.Empty)" class="form-control" />
+                                        <span id="errorUserRegisterPhone" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label for="template-contactform">Gender</label>
+                                        <br /><div class="form-check-inline">
+                                            <input class="form-check-input gender" type="radio" name="User.GenderId" id="exampleRadios1" value="1" @(Model.User != null ? (Model.User.GenderId == 1 ? "checked" : string.Empty) : "checked")>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="radio" name="User.GenderId" id="exampleRadios2" value="2" @(Model.User != null ? (Model.User.GenderId == 2 ? "checked" : string.Empty) : string.Empty)>
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label for="template-contactform-Role">Type</label>
+                                        <br /><div class="form-check-inline">
+                                            <input class="form-check-input" option="type" type="radio" name="User.RoleId" id="exampleRadios1" value="2" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Doctor
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" option="type" type="radio" name="User.RoleId" id="exampleRadios2" value="3">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Sale Person
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 form-group doctorFields">
+                                        <label for="register-form-Location" id="lblUserRegisterLocationName">Location Name</label> <span style="color:red">*</span>
+                                        <input type="text" id="register-form-LocationName" name="LocationName" value="@(Model.LocationName != null ? Model.LocationName : string.Empty)" class="form-control" onblur="return chkblnk('register-form-LocationName','errorUserRegisterLocationName','lblUserRegisterLocationName')" />
+                                        <span id="errorUserRegisterLocationName" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group doctorFields">
+                                        <label for="register-form-ProviderType" id="lblUserRegisterProviderType">Provider Type</label> <span style="color:red">*</span>
+                                        <input type="text" id="register-form-ProviderType" name="ProviderType" value="@(Model.ProviderType != null ? Model.ProviderType : string.Empty)" class="form-control" onblur="return chkblnk('register-form-ProviderType','errorUserRegisterProviderType','lblUserRegisterProviderType')" />
+                                        <span id="errorUserRegisterProviderType" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group doctorFields">
+                                        <label for="PracticeDD">Practice</label>
+                                        <select id="practiceDD" class="form-control" name="PracticeId" required>
+                                        </select>
+                                        <label id="dd-required"></label>
+                                        <span id="errorUserRegisterPracticeName" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group doctorFields">
+                                        <label for="register-form-LocationAddress" id="lblUserRegisterLocationAddress">Location Address</label> <span style="color:red">*</span>
+                                        <input type="text" id="register-form-LocationAddress" name="LocationAddress" value="@(Model.LocationAddress != null ? Model.LocationAddress : string.Empty)" class="form-control" onblur="return chkblnk('register-form-LocationAddress','errorUserRegisterLocationAddress','lblUserRegisterLocationAddress')" />
+                                        <span id="errorUserRegisterLocationAddress" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group doctorFields">
+                                        <label for="register-form-WebsiteURL" id="lblUserRegisterWebsiteURL">Website URL</label> <span style="color:red">*</span>
+                                        <input type="text" id="register-form-WebsiteURL" name="WebsiteURL" value="@(Model.WebsiteURL != null ? Model.WebsiteURL : string.Empty)" class="form-control" onblur="return chkblnk('register-form-WebsiteURL','errorUserRegisterWebsiteURL','lblUserRegisterWebsiteURL')" />
+                                        <span id="errorUserRegisterWebsiteURL" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-password" id="lblUserRegisterPassword">Password</label><span style="color:red">*</span>
+                                        <input type="password" id="register-form-password" name="User.Password" value="" class="form-control" onblur="return chkblnk('register-form-password','errorUserRegisterPassword','lblUserRegisterPassword')" />
+                                        <span id="errorUserRegisterPassword" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-repassword">Re-enter Password</label><span style="color:red">*</span>
+                                        <input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" onblur="return passwordValidate()" />
+                                        <span id="errorUserRegisterrePassword" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <button id="btnRegisterSubmit" type="button" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Register</span> <i class="icon-angle-right"></i></button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                debugger
+                $.ajax({
+                    type: "GET",
+                    url: "/Practice/GetAllPractice",
+                    dataType: "json",
+                    success: function (result) {
+                        $('#practiceDD').html('');
+                        var rows1 = "<option value='' selected disabled > --select Practice--</option >";
+                        $('#practiceDD').append(rows1);
+
+                        $.each(result, function (i, item) {
+                            var rows;
+                            rows = "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                            $('#practiceDD').append(rows);
+                        });
+                    }
+                });
+            });
+            //called when key is pressed in textbox
+            $("#register-form-Phone").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && String.fromCharCode(e.which) != '-' && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $('input[type=radio][option=type]').change(function () {
+            ////debugger;
+            if (this.value == '2') {
+                $(".doctorFields").show();
+            }
+            else {
+                $(".doctorFields").hide();
+            }
+        });
+        $("#btnRegisterSubmit").click(function (evt) {
+            debugger
+            var errorSummery = $("#errorSummery");
+            var radioValue = $("input[name='User.RoleId']:checked").val();
+            if (!passwordValidate()) {
+                return false;
+            }
+
+            if (!fieldRequired(radioValue)) {
+                errorSummery.show();
+                errorSummery.text("Please fill all required fields").fadeOut(4000);
+                return false;
+            }
+            else {
+                ////debugger;
+                var url;
+                if (radioValue == "2")
+                    url = "/Registration/RegisterDoctor";
+                else
+                    url = "/Registration/RegisterSalePerson";
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: "json",
+                    data: $("#register-form").serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            swal({
+                                title: "Success!",
+                                text: response.responseText,
+                                type: "success"
+                            }).then(
+                                function (okay) {
+                                    if (okay) {
+                                        window.location.href = "/Account";
+                                    }
+                                }
+                            );
+
+                        } else {
+                            swal("Error", response.responseText, "error");
+                        }
+                    },
+                    error: function (response) {
+                    }
+                })
+            }
+        });
+        function fieldRequired(role) {
+            if (($("#register-form-FirstName").val().length != 0 && $("#register-form-LastName").val().length != 0 && $("#register-form-Email").val().length != 0 && $("#register-form-password").val().length != 0 && $("#register-form-repassword").val().length != 0 && role == "3") || ($("#register-form-FirstName").val().length != 0 && $("#register-form-LastName").val().length != 0 && $("#register-form-Email").val().length != 0 && $("#register-form-LocationName").val().length != 0 && $("#register-form-ProviderType").val().length != 0 && $("#register-form-password").val().length != 0 && $("#register-form-repassword").val().length != 0 && role == "2")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        function passwordValidate() {
+            var pas = $("#register-form-password");
+            var repas = $("#register-form-repassword");
+            var rePassword = $("#errorUserRegisterrePassword");
+            var Password = $("#errorUserRegisterPassword");
+            if (pas.val() != '' && pas.val().length < 6) {
+                Password.text("Password must be greater then 5");
+                return false;
+            }
+            else if (pas.val() != '' && repas.val() != '' && pas.val() == repas.val()) {
+                rePassword.text("");
+                return true;
+            }
+            else if (pas.val() == '' && repas.val() == '') {
+                rePassword.text("");
+                return true;
+            }
+            else if (pas.val() != '' && repas.val() == '') {
+                rePassword.text("Re-type Password required");
+                return false;
+            }
+
+            else {
+                pas.val('');
+                repas.val('');
+                rePassword.text("Password miss match");
+                return false;
+            }
+        }
+        function UserNameValidate(value) {
+            var response = $.ajax({
+                type: 'POST',
+                url: "/Registration/UserNameExsist",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                data: JSON.stringify({ 'Email': value }),
+                success: function (response) {
+                    if (response.success) {
+                    } else {
+                    }
+                },
+                error: function (response) {
+                }
+            });
+            return response;
+        }
+        function chkblnk(eid, errid, label) {
+
+            ////debugger;
+
+            var errorSummery = $("#errorSummery");
+            errorSummery.hide();
+            var x = document.getElementById(eid).value;
+            var lbl = document.getElementById(label).innerText.toLowerCase();
+            if (x == "") {
+                document.getElementById(errid).innerHTML = lbl + " required";
+            }
+            else if (eid == "register-form-password" && x.length < 6) {
+                document.getElementById(errid).innerHTML = lbl + " must be greater then 5";
+            }
+            else if (eid == "register-form-Email") {
+                if (chkeid()) {
+                    var response = UserNameValidate(x);
+                    if (response.status == 200) {
+                        document.getElementById(errid).innerHTML = "";
+                    }
+                    else if (response.responseText.toLowerCase().indexOf('already exist') !== -1) {
+                        document.getElementById(eid).value = "";
+                        document.getElementById(errid).innerHTML = "'" + x + "' Already Exist";
+                    }
+                }
+            }
+            else {
+                document.getElementById(errid).innerHTML = "";
+            }
+        }
+        function chkeid() {
+            var mailformat = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/
+            var e = document.getElementById("register-form-Email").value;
+            var atpos = e.indexOf("@@");
+            var dotpos = e.lastIndexOf(".");
+            if (e != "" && !e.match(mailformat)) {
+                document.getElementById("errorUserRegisterEmail").innerHTML = "invalid email";
+                return false;
+            }
+            else {
+                document.getElementById("errorUserRegisterEmail").innerHTML = "";
+                return true;
+            }
+        }
+        $("#register-form-Phone").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && String.fromCharCode(e.which) != '-' && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $("#btnLoginSubmit").click(function (evt) {
+            if (fieldRequire()) {
+                var response = $.ajax(
+                    {
+                        type: 'POST',
+                        beforeSend: function () {
+                            $("#btnLoginSubmit").html("Please Wait...");
+                        },
+                        url: "/Registration/Login",
+                        dataType: "json",
+                        data: $("#login-form").serialize(),
+                        success: function (response) {
+                            debugger;
+                            if (response.success) {
+                                if (response.roles == 1) {
+                                    window.location.href = '/Dashboard/Home';
+                                }
+                                if (response.roles == 2) {
+                                    window.location.href = '/DoctorSchedule/DocSchedule';
+                                }
+                                if (response.roles == 3) {
+                                    window.location.href = '/SalePersonDashboard/Index';
+                                }
+                            }
+                            
+                            else if (!response.success) {
+                                swal("Error", response.responseText, "error");
+                            }
+                        },
+                        //complete: function () {
+                        //},
+                        error: function (response) {
+
+                        }
+                    }
+                );
+            }
+        });
+
+        function fieldRequire() {
+
+            if ($("#login-form-username").val().length != 0 && $("#login-form-password").val().length != 0 ) {
+                return true;
+            }
+            else {
+                if ($("#login-form-username").val().length == 0) {
+                    $("#errorUserNameLogin").text("Username required");
+                }
+                if ($("#login-form-password").val().length == 0) {
+                    $("#errorPasswordLogin").text("Password required");
+
+                }
+                return false;
+            }
+        }
+        function chkblnkLogin(eid, errid, label) {
+            var x = document.getElementById(eid).value;
+
+            var lbl = document.getElementById(label).innerText.toLowerCase();
+            if (x == "") {
+
+                document.getElementById(errid).innerHTML = lbl + " required";
+            }
+            else {
+                document.getElementById(errid).innerHTML = "";
+            }
+        }
+
+        $(document).ready(function () {
+            ////debugger;
+
+            var id = @(TempData.Peek("Doctor") == null ? 0 : 1);
+            if (id == 1) {
+                $("#btnRegisterTab").get(0).click()
+                //$("#btnRegisterTab").click();
+    }
+});
+    </script>
+}

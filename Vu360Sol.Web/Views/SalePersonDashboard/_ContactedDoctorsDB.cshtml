@@ -1,0 +1,249 @@
+﻿@model Vu360Sol.ViewModel.SharedViewModels.DoctorPaginationModel
+<div class="jumbotron" style="background-color: #f9f9f9c7 !important;height: 735px;position: relative;">
+    <h4>Contacted Doctors</h4>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input class="form-control" id="searchInputContactedDoctors" type="text" value="@Model.SearchTerm" placeholder="Search by First Name ,Last Name and Email" style="margin-bottom: 10px;">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <select id="daysContactedDoctors" name="daysApproval" class="form-control">
+                <option value="1" selected>Today</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+            </select>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table" id="content">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+
+                @if (@Model.doctors == null || (@Model.doctors != null && @Model.doctors.Count() == 0))
+                {
+                    <tr>
+                        <td colspan="5" style="text-align:center;font-size:20px;font-weight:bold;">
+                            No Contacted Doctor...
+                        </td>
+                    </tr>
+                }
+                else
+                {
+
+                    foreach (var item in @Model.doctors)
+                    {
+                        <tr id="contentrow">
+                            <td>
+                                @if (item.ImagePath == null)
+                                {
+                                    <img src="~/Content/canvas/WebSite Images/fuser.png" style="width:50px;height:50px;border-radius:25px;" />
+                                }
+                                else
+                                {
+                                    <img src="~/UploadedFiles/@item.ImagePath" style="width:50px;height:50px;border-radius:25px;" />
+                                }
+                                <input type="hidden" id="hfId" value="@item.Id" />
+                                <input type="hidden" id="hfIsUserRegisterd" value="@item.User.IsActive.ToString()" />
+                            </td>
+                            <td id="FirstName">
+                                @item.User.FirstName
+
+                            </td>
+                            <td id="LastName">
+                                @item.User.LastName
+
+                            </td>
+                            <td id="Phone">@item.User.PhoneNumber</td>
+                            @*<td>
+                                    <ul class="navbar-nav mx-auto absolute-right ">
+                                        <li class="nav-item dropdown" style=" text-align: center;">
+
+                                            <a class="" href="#" onclick="assign(@item.Id)" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon icon-eye"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>*@
+
+
+                            <td>
+                                <ul class="navbar-nav mx-auto absolute-right  ">
+                                    <li class="nav-item dropdown">
+
+                                        <a class="" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon icon-list"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdown05" style="min-width: 14rem !important;left:-41px !important">
+                                            <a href="#" onclick="DrAssignDetail(@item.Id)" style="text-decoration: none; padding: 6px">
+                                                <i class="icon icon-eye"></i>
+                                                Detail
+                                            </a>
+                                            <br />
+                                            <a href="#" onclick="assign(@item.Id)" style="text-decoration: none; padding: 6px">
+                                                <i class="icon icon-call"></i>
+                                                View Notes
+                                            </a>
+                                            <br />
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="row" style="position: absolute; bottom: 20px !important;width: 95%;">
+        <div class="col-lg-12">
+
+            <ul class="pagination pagination-rounded mt-5">
+                @if (@Model.page != null && @Model.page.TotalPages > 1)
+                {
+
+                    if (@Model.page.CurrentPage > 1)
+                    {
+                        <li class="page-item" title="First">
+                            <a class="pageButtonsContactedDr page-link" data-pageno="1"><i class="icon-line-chevrons-left"></i></a>
+                        </li>
+
+                        <li class="page-item" title="Previous">
+                            <a class="pageButtonsContactedDr page-link" data-pageno="@(@Model.page.CurrentPage - 1)"><i class="icon-line-chevron-left"></i></a>
+                        </li>
+                    }
+                    for (var page = @Model.page.StartPage; page <= @Model.page.EndPage; page++)
+                    {
+                        string activeClass = @Model.page.CurrentPage == page ? "active" : string.Empty;
+
+                        <li class="page-item @activeClass">
+                            <a class="pageButtonsContactedDr page-link" data-pageno="@page">@page</a>
+
+                        </li>
+                    }
+                    if (@Model.page.CurrentPage < @Model.page.TotalPages)
+                    {
+                        <li class="page-item" title="Next">
+                            <a class="pageButtonsContactedDr page-link" data-pageno="@(@Model.page.CurrentPage + 1)"><i class="icon-line-chevron-right"></i></a>
+                        </li>
+                        <li class="page-item" title="Last">
+                            <a class="pageButtonsContactedDr page-link" data-pageno="@Model.page.TotalPages"><i class="icon-line-chevrons-right"></i></a>
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="row" style=" margin-top: 20px;">
+
+                <div class="col-md-12" style=" text-align: center;">
+                    <a href="/DoctorAssign/ContactedDoctors/@Session["UserId"]" class="btn btn-primary" style="background-color:#1abc9c;">View All</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+        @Html.Partial("_DoctorsContactedModel")
+        <script src="~/Scripts/doctorscontacted.js"></script>
+        <script>
+    $(".pageButtonsContactedDr").click(function () {
+        debugger;
+        var data= {
+				pageNo: $(this).attr("data-pageNo"),
+                search: '@Model.SearchTerm',
+                Days: $("#daysContactedDoctors").val()
+        }
+        SendRequestContactedDoctors(data);
+	});
+
+    $('#searchInputContactedDoctors').on('input', function (e) {
+        var data = {
+            search: $('#searchInputContactedDoctors').val(),
+            Days: $("#daysContactedDoctors").val()
+        };
+        SendRequestContactedDoctors(data);
+    });
+    function SendRequestContactedDoctors( data) {
+        	$.ajax({
+			url: '@Url.Action("ContactedDoctorsPage", "SalePersonDashboard")',
+			data:data
+		})
+            .done(function (response) {
+                var DDvalue = $('#daysContactedDoctors').val();
+                $("#contactedPartial").html(response);
+                var search = $("#searchInputContactedDoctors");
+                $("#daysContactedDoctors").val(DDvalue);
+                var strLength = search.val().length * 2;
+                search[0].setSelectionRange(strLength, strLength);
+
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	//alert("FAIL");
+        });
+    };
+
+        </script>
+        <script>
+            $("#daysContactedDoctors").change(function () {
+                var data = {
+                    Days: $('#daysContactedDoctors').val()
+                };
+                SendRequestContactedDoctors(data);
+
+            })
+        </script>
+<script>
+    var ContectedDoctorAssignNotesDB = function (Id) {
+        //PV
+        debugger
+        $("#AddNotesAssignModel").modal("show");
+        $('#drID').val(Id);
+        ContectedDoctorAssignNotes(Id);
+
+    }
+
+    function ContectedDoctorAssignNotes(Id) {
+        //DA Partial View
+        debugger
+        $.ajax({
+            type: "GET",
+            url: "/DoctorAssign/GetByDoctorId/" + Id,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                debugger
+                $('#AssignNotesTable2').html('');
+                $.each(data, function (i, item) {
+                    debugger
+                    var assignedName = '';
+                    if (item.SalePerson != null) {
+
+                        assignedName = item.SalePerson.User.FullName;
+                    }
+                    var Discription = '';
+                    if (item.Note != null && item.Note.Discription != null) {
+
+                        Discription = item.Note.Discription;
+                    }
+                    $("#ContactDR").html(item.Doctor.User.FullName);
+                    rows = "<tr><td>" + Discription + "</td><td>" + item.Date + "</td><td>" + assignedName + "</td><td><a data-model-id='" + item.Id + "' onclick='DeleteAssignedDoctor(this)' style='cursor:pointer;color:red'><i class='icon icon-trash'></i></a></td></tr>";
+                    $('#AssignNotesTable2').append(rows);
+                });
+            },
+            error: function (result) {
+                alert('Please Try Again...');
+            }
+        });
+    }
+</script>

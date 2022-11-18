@@ -1,0 +1,52 @@
+﻿@model Vu360Sol.ViewModel.Practices.PracticeViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix" style="margin-bottom:141px;">
+
+            <div class="tabs mx-auto mb-0 clearfix" id="tab-login-register" style="max-width: 500px;border:none !important;">
+
+                @*<ul class="tab-nav tab-nav2 center clearfix">
+                    <li class="inline-block"><a href="#tab-login">Edit</a></li>
+                </ul>*@
+
+                <div class="tab-container">
+
+                    <div class="tab-content" id="tab-login">
+                        <div class="card mb-0">
+                            <div class="card-body" style="padding: 40px;">
+                                <form id="Practice-form" name="Practice-form" class="mb-0" action="Edit" method="post" autocomplete="off">
+
+                                    <h3>Edit Practice</h3>
+                                    <input type="hidden" value="@Model.Id" name="Id" />
+                                    <div class="row">
+                                        <div class="col-12 form-group">
+                                            <label for="Email" id="lblEmail">Enter Name</label>
+                                            <input type="text" required id="Name" name="Name" value="@Model.Name" class="form-control" onblur="return chkblnk('Name','errorName','lblName')" />
+                                            <span id="errorName" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="col-12 form-group">
+                                            <button id="btnLoginSubmit" type="submit" class="button button-border button-white button-light button-large button-rounded text-right m-0"><span>Edit</span> <i class="icon-angle-right"></i></button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

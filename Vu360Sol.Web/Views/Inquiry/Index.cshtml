@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Theme2Layout.cshtml";
+}
+<section id="content">
+    <div class="container clearfix">
+        <div class="content-wrap">
+            <div class="row">
+                <div class="col-lg-10 offset-1">
+                    <div class="">
+                        <h1 class="text-center">Inquiries </h1>
+                    </div>
+                    <div class="tabs mx-auto mb-0 clearfix" id="tab-login-register">
+                        <ul class="tab-nav tab-nav2 center clearfix">
+                            <li class="inline-block active"><a id="LearnMore" style="cursor:pointer;">Learn More</a></li>
+                            <li class="inline-block"><a id="ReadytoGetStarted" style="cursor:pointer;">Ready to Get Started</a></li>
+                        </ul>
+                        <div class="tab-container">
+                            <div class="tab-content">
+                                <div class="card mb-0">
+                                    <div class="card-body">
+                                        <div id="partial">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $("#LearnMore").click(function () {
+            $.ajax({
+            url: '@Url.Action("GetAllVisitorForLearning", "Inquiry")',
+		    })
+            .done(function (response) {
+                $("#LearnMore").css("background-color", "#1c79bc");
+                $("#LearnMore").css("color", "white");
+                $("#ReadytoGetStarted").css("background-color", "#f5f5f5");
+                $("#ReadytoGetStarted").css("color", "inherit");
+                $("#partial").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+            });
+        });
+    </script>
+    <script>
+        $("#ReadytoGetStarted").click(function () {
+           $.ajax({
+            url: '@Url.Action("GetAllVisitorForStarting", "Inquiry")',
+		    })
+            .done(function (response) {
+                $("#ReadytoGetStarted").css("background-color", "#1c79bc");
+                $("#ReadytoGetStarted").css("color", "white");
+                $("#LearnMore").css("background-color", "#f5f5f5");
+                $("#LearnMore").css("color", "inherit");
+                $("#partial").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+            });
+        });
+    </script>
+    <script>
+    $(document).ready(function(){
+
+
+        $.ajax({
+            url: '@Url.Action("GetAllVisitorForLearning", "Inquiry")',
+		})
+            .done(function (response) {
+                $("#LearnMore").css("background-color", "#1c79bc");
+                $("#LearnMore").css("color", "white");
+            $("#partial").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+    });
+    </script>
+
+}
